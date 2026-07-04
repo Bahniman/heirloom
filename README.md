@@ -14,6 +14,16 @@ Companies are pouring their decisions, meeting notes and hard-won lessons into A
 
 The comparison that makes it click: when every app needed logins, the winner wasn't any single app — it was the neutral "sign in with..." layer they all plugged into. Company memory is having that same moment now.
 
+## The business, concretely
+
+The buyer is a knowledge firm — consulting, law, agencies — where knowledge *is* the inventory and attrition is the write-off. Three payable moments:
+
+1. **Exit insurance.** A departing partner takes hundreds of decision-rationales with them ("why we priced it that way", "what Client K's CFO actually wants"). With Heirloom, the reasoning stays queryable — with sources — after the person is gone. Every resignation today is an uninsured loss; this insures it.
+2. **Ramp compression.** New managers spend their first quarter re-learning what the firm already knew. Role-scoped memory makes month one look like month six — directly billable time recovered.
+3. **Vendor leverage.** When the firm's memory exports cleanly in an open format, every AI-contract renewal happens with a credible walk-away. CIOs will pay for the exit right alone, because the alternative is negotiating against their own locked-in knowledge.
+
+**Revenue:** per-seat subscription for the memory layer + migration services (structuring a firm's existing knowledge in) + connector ecosystem. **The moat is neutrality plus the standard:** a memory holder must have no competing assistant of its own (that's why platforms bundling memory "free" is the pitch, not the threat — CIOs don't want the memory inside the vendor they're trying to keep replaceable), and every tool that reads the export format makes the layer harder to displace. The Okta playbook, replayed for memory.
+
 <details>
 <summary><b>Jargon decoder</b> (click to expand)</summary>
 

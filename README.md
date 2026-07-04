@@ -14,6 +14,14 @@ Companies are pouring their decisions, meeting notes and hard-won lessons into A
 
 The comparison that makes it click: when every app needed logins, the winner wasn't any single app — it was the neutral "sign in with..." layer they all plugged into. Company memory is having that same moment now.
 
+## The evidence (all sourced, all verifiable)
+
+- **$47 million per year** — what the average large US business loses in productivity from inefficient knowledge sharing ([Panopto Workplace Knowledge and Productivity Report](https://www.panopto.com/company/news/inefficient-knowledge-sharing-costs-large-businesses-47-million-per-year/), survey with YouGov, n=1,001).
+- **$31.5 billion per year** — what Fortune 500 companies collectively lose by failing to share knowledge ([IDC, widely cited](https://blog.nuclino.com/not-sharing-knowledge-costs-fortune-500-companies-31-5-billion-a-year)).
+- **42% of institutional knowledge is unique to one individual** — when that person leaves or changes departments, there is no second copy ([Panopto/YouGov](https://www.panopto.com/company/news/inefficient-knowledge-sharing-costs-large-businesses-47-million-per-year/)). This is why exit-time "knowledge transfer" fails: the giver has one foot out the door and the taker doesn't yet know what to ask. Neither is invested — the handover is a ritual, not a transfer.
+- **5.3 hours per week** — what each US knowledge worker wastes waiting for information colleagues hold, or recreating knowledge that already exists ([same study](https://www.hrdive.com/news/inefficient-knowledge-sharing-costs-large-us-businesses-47m-a-year/527892/)).
+- **The strategic argument, from the top of the industry:** Satya Nadella has publicly urged companies to build agentic systems that *retain and compound institutional knowledge while staying flexible enough to swap the underlying AI models* — to "decouple their institutional intelligence from whatever frontier model they happen to be running" and own the learning loop ([EdTech Innovation Hub coverage](https://www.edtechinnovationhub.com/news/microsoft-ceo-satya-nadella-says-companies-must-own-the-ai-learning-loops-shaping-their-future); [analysis](https://qualityclouds.ai/blog/satya-nadella-learning-loop-ai-code-governance-enterprise-survival)). That is, verbatim, the Heirloom thesis: portable, model-independent organizational memory.
+
 ## The business, concretely
 
 The buyer is a knowledge firm — consulting, law, agencies — where knowledge *is* the inventory and attrition is the write-off. Three payable moments:

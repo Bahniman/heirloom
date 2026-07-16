@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { GlowCard } from "@/components/glow-card";
 import { RoleQuerySimulator } from "@/components/role-query-simulator";
-import { EventSimulator } from "@/components/event-simulator";
 import { JargonDecoder } from "@/components/jargon-decoder";
 import {
   FileText,
@@ -29,8 +28,10 @@ export default function LandingPage() {
     <div className="relative min-h-screen bg-transparent grid-bg">
       {/* Background blobs */}
       <div className="pointer-events-none fixed inset-0 z-[-1] overflow-hidden">
-        <div className="animate-blob-1 absolute -top-[20%] -left-[10%] h-[600px] w-[600px] rounded-full bg-blob-emerald blur-[120px]" />
-        <div className="animate-blob-2 absolute top-[40%] -right-[10%] h-[500px] w-[500px] rounded-full bg-blob-indigo blur-[100px]" />
+        <div className="animate-blob-1 absolute -top-[10%] -left-[10%] h-[800px] w-[800px] rounded-full bg-emerald-500/18 dark:bg-emerald-500/12 blur-[130px] opacity-90" />
+        <div className="animate-blob-2 absolute bottom-[-10%] right-[-10%] h-[800px] w-[800px] rounded-full bg-indigo-600/18 dark:bg-indigo-600/12 blur-[130px] opacity-90" />
+        <div className="animate-blob-1 absolute top-[25%] left-[30%] h-[600px] w-[600px] rounded-full bg-rose-500/16 dark:bg-rose-500/12 blur-[130px] opacity-90" />
+        <div className="animate-blob-2 absolute bottom-[25%] left-[-10%] h-[500px] w-[500px] rounded-full bg-amber-500/16 dark:bg-amber-500/10 blur-[130px] opacity-90" />
       </div>
 
       {/* Header / Nav */}
@@ -126,9 +127,8 @@ export default function LandingPage() {
               <p className="text-sm text-muted-foreground">Interact with role-scoped retrieval controls and simulate critical memory events.</p>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="w-full">
               <RoleQuerySimulator />
-              <EventSimulator />
             </div>
           </section>
 

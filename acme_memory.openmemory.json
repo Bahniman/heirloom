@@ -1,0 +1,72 @@
+{
+  "format": "open-memory/v1",
+  "org": "Acme Consulting LLP",
+  "exported_at": 1783138594.9982998,
+  "memories": [
+    {
+      "content": "We chose VendorX for the data platform over VendorY.",
+      "kind": "decision",
+      "tags": [
+        "vendorx",
+        "data-platform"
+      ],
+      "min_role": "intern",
+      "allow_roles": [],
+      "author": "S. Rao",
+      "source": "steering committee, 12 Mar 2025",
+      "created_at": 1783138594.9980497,
+      "supersedes": null,
+      "id": "mem_32db7bdd76"
+    },
+    {
+      "content": "Real reason for VendorX: VendorY's pricing tripled at renewal for Client K; we could not risk the same mid-engagement. Their demo was actually better.",
+      "kind": "rationale",
+      "tags": [
+        "vendorx",
+        "pricing",
+        "risk"
+      ],
+      "min_role": "manager",
+      "allow_roles": [],
+      "author": "S. Rao",
+      "source": "partner sync notes, 12 Mar 2025",
+      "created_at": 1783138594.9980915,
+      "supersedes": null,
+      "id": "mem_429430154a"
+    },
+    {
+      "content": "VendorX contract has a 40% discount locked until 2027 in exchange for a case study; do not resell at list price internally.",
+      "kind": "fact",
+      "tags": [
+        "vendorx",
+        "contract",
+        "pricing"
+      ],
+      "min_role": "analyst",
+      "allow_roles": [
+        "exec"
+      ],
+      "author": "finance",
+      "source": "MSA appendix C",
+      "created_at": 1783138594.9981008,
+      "supersedes": null,
+      "id": "mem_6501b85a7c"
+    },
+    {
+      "content": "Weekly standup: data migration to VendorX is two weeks behind; blocker is Client K's security review.",
+      "kind": "meeting",
+      "tags": [
+        "vendorx",
+        "migration",
+        "client-k"
+      ],
+      "min_role": "analyst",
+      "allow_roles": [],
+      "author": "pm-bot",
+      "source": "standup 02 Jun 2025",
+      "created_at": 1783138594.998105,
+      "supersedes": null,
+      "id": "mem_f115a33f31"
+    }
+  ]
+}

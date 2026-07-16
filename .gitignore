@@ -1,4 +1,21 @@
+node_modules/
+dist/
+# Python artifacts
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
 .venv/
-*.openmemory.json
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Local env files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db

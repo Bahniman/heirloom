@@ -1,0 +1,226 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import "@fontsource-variable/inter";
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Plus Jakarta Sans", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #FFFFFF;
+  --foreground: #161616;
+  --card: #FFFFFF;
+  --card-foreground: #161616;
+  --popover: #FFFFFF;
+  --popover-foreground: #161616;
+  --primary: #000DFF;
+  --primary-foreground: #FFFFFF;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #161616;
+  --muted: #f5f5f5;
+  --muted-foreground: #707070;
+  --accent: #EDFF00; /* Bright Yellow for Heirloom accent! */
+  --accent-foreground: #161616;
+  --destructive: #dc2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #d4d4d4;
+  --input: #d4d4d4;
+  --ring: #000DFF;
+
+  --scene-bg: #FFFFFF;
+  --scene-bg-gradient: #f5f5f5;
+  --glass-bg: rgba(255, 255, 255, 0.80);
+  --glass-border: #d4d4d4;
+  --grid-line: rgba(0, 0, 0, 0.06);
+  --grid-dot: rgba(0, 0, 0, 0.10);
+  --blob-emerald: rgba(11, 219, 0, 0.12);
+  --blob-indigo: rgba(0, 13, 255, 0.10);
+
+  /* Work Louder accents */
+  --wl-yellow: #EDFF00;
+  --wl-orange: #FF4D00;
+  --wl-blue: #000DFF;
+  --wl-green: #0BDB00;
+}
+
+.dark {
+  --background: #0A0A0A;
+  --foreground: #EDEDED;
+  --card: #161616;
+  --card-foreground: #EDEDED;
+  --popover: #161616;
+  --popover-foreground: #EDEDED;
+  --primary: #5566FF;
+  --primary-foreground: #FFFFFF;
+  --secondary: #222222;
+  --secondary-foreground: #EDEDED;
+  --muted: #222222;
+  --muted-foreground: #888888;
+  --accent: #EDFF00;
+  --accent-foreground: #0A0A0A;
+  --destructive: #ef4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #2D2D2D;
+  --input: #2D2D2D;
+  --ring: #5566FF;
+
+  --scene-bg: #0A0A0A;
+  --scene-bg-gradient: #121212;
+  --glass-bg: rgba(22, 22, 22, 0.80);
+  --glass-border: #2D2D2D;
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --grid-dot: rgba(255, 255, 255, 0.08);
+  --blob-emerald: rgba(11, 219, 0, 0.08);
+  --blob-indigo: rgba(85, 102, 255, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+html {
+  background-color: var(--scene-bg);
+}
+
+body {
+  background: linear-gradient(180deg, var(--background) 0%, var(--scene-bg-gradient) 100%);
+  background-attachment: fixed;
+  color: var(--foreground);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@utility glass {
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--glass-border);
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
+    radial-gradient(circle, var(--grid-dot) 1.5px, transparent 1.5px);
+  background-size: 56px 56px, 56px 56px, 56px 56px;
+}
+
+@utility btn-press {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+.btn-press:active { transform: scale(0.97); }
+
+/* Ambient Slow Blob Animations */
+@keyframes float-blob-1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(40px, -60px) scale(1.15); }
+  66% { transform: translate(-30px, 30px) scale(0.9); }
+}
+
+@keyframes float-blob-2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(-50px, 50px) scale(1.2); }
+}
+
+.animate-blob-1 {
+  animation: float-blob-1 22s ease-in-out infinite;
+}
+
+.animate-blob-2 {
+  animation: float-blob-2 26s ease-in-out infinite;
+}
+
+/* Tech panel brackets and line decorators */
+.tech-bracket-tl {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  border-top: 1.5px solid rgba(237, 255, 0, 0.4);
+  border-left: 1.5px solid rgba(237, 255, 0, 0.4);
+  pointer-events: none;
+}
+
+.tech-bracket-tr {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-top: 1.5px solid rgba(237, 255, 0, 0.4);
+  border-right: 1.5px solid rgba(237, 255, 0, 0.4);
+  pointer-events: none;
+}
+
+.tech-bracket-bl {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 1.5px solid rgba(237, 255, 0, 0.4);
+  border-left: 1.5px solid rgba(237, 255, 0, 0.4);
+  pointer-events: none;
+}
+
+.tech-bracket-br {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 1.5px solid rgba(237, 255, 0, 0.4);
+  border-right: 1.5px solid rgba(237, 255, 0, 0.4);
+  pointer-events: none;
+}
+
+.text-neon-accent {
+  text-shadow: 0 0 12px rgba(237, 255, 0, 0.4);
+}

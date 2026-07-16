@@ -12,7 +12,7 @@ export function GlowCard({
   showTechBrackets = true,
   ...props
 }: GlowCardProps) {
-  const cardRef = useRef<HTMLDivElement>(cardRef.current);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;

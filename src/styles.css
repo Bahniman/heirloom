@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Plus Jakarta Sans", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: "Roboto", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   
   --radius-xs: 4px;
   --radius-sm: 8px;
@@ -57,6 +57,9 @@
   --color-muted-foreground: var(--md-sys-color-on-surface-variant);
   --color-accent: var(--md-sys-color-tertiary);
   --color-accent-foreground: var(--md-sys-color-on-tertiary);
+  --color-inverse-surface: var(--md-sys-color-inverse-surface);
+  --color-inverse-on-surface: var(--md-sys-color-inverse-on-surface);
+  --color-inverse-primary: var(--md-sys-color-inverse-primary);
 
   /* Map M3 Typography */
   --text-display-lg: 57px;
@@ -105,6 +108,10 @@
   --md-sys-color-outline: #7a7768;
   --md-sys-color-outline-variant: #cbc6b5;
 
+  --md-sys-color-inverse-surface: #323027;
+  --md-sys-color-inverse-on-surface: #f6f1e7;
+  --md-sys-color-inverse-primary: #d8c92e;
+
   --scene-bg: var(--md-sys-color-surface);
   --scene-bg-gradient: var(--md-sys-color-surface);
 }
@@ -144,6 +151,10 @@
   
   --md-sys-color-outline: #949181;
   --md-sys-color-outline-variant: #49473a;
+
+  --md-sys-color-inverse-surface: #e5e2da;
+  --md-sys-color-inverse-on-surface: #32312b;
+  --md-sys-color-inverse-primary: #686000;
 
   --scene-bg: var(--md-sys-color-surface);
   --scene-bg-gradient: var(--md-sys-color-surface);

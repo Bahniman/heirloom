@@ -29,7 +29,7 @@ export default function LandingPage() {
         <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex items-center justify-between h-16">
             <a href="#" className="flex items-center gap-2.5">
-              <span className="text-title-lg font-medium tracking-tight">
+              <span className="text-title-lg font-medium">
                 Heirloom
               </span>
             </a>
@@ -63,7 +63,7 @@ export default function LandingPage() {
             <div className="inline-flex items-center gap-2 rounded-full bg-surface-container-high px-4 py-1.5 text-label-lg font-medium text-primary">
               <Award className="h-4 w-4" /> Startup Lab · Knowledge Asset Protection
             </div>
-            <h1 className="text-[45px] leading-[52px] md:text-[57px] md:leading-[64px] font-normal tracking-tight text-on-surface">
+            <h1 className="text-[45px] leading-[52px] md:text-[57px] md:leading-[64px] font-normal text-on-surface">
               The firm's memory,<br />owned by the firm.
             </h1>
             <p className="text-title-lg leading-relaxed text-on-surface-variant max-w-[760px]">
@@ -73,7 +73,7 @@ export default function LandingPage() {
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href="#demo"
-                className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-label-lg font-medium hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-label-lg font-medium hover:bg-[color-mix(in_srgb,var(--md-sys-color-on-primary)_8%,var(--md-sys-color-primary))] transition-colors"
               >
                 Try Interactive Demo <ArrowRight className="h-4 w-4" />
               </a>

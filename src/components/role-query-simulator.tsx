@@ -290,7 +290,7 @@ export function RoleQuerySimulator() {
                 : "border-transparent text-on-surface-variant hover:text-on-surface"
             }`}
           >
-            {t === "explorer" ? "📁 Vault Explorer" : t === "query" ? "🔍 Scoped Search" : "⚙️ Lifecycle Events"}
+            {t === "explorer" ? "Vault Explorer" : t === "query" ? "Scoped Search" : "Lifecycle Events"}
           </button>
         ))}
       </div>
@@ -371,30 +371,30 @@ export function RoleQuerySimulator() {
                       </div>
                     </div>
 
-                    <div className="flex-1 min-h-[120px] bg-[#13120F] border border-[#2D2A20] rounded-lg p-3 relative flex items-center justify-center">
+                    <div className="flex-1 min-h-[120px] bg-surface-container-highest border border-outline-variant rounded-lg p-3 relative flex items-center justify-center">
                       {isLocked ? (
                         <div className="text-center space-y-2 p-4 animate-pulse">
                           <Lock className="h-8 w-8 mx-auto text-error" />
                           <p className="font-bold text-error">DECRYPTION FAILURE [UNAUTHORIZED]</p>
-                          <p className="text-[10px] text-zinc-500 max-w-sm">Requires role level &gt;= {selectedFile.min}. Pre-scoring vector clearance returned null.</p>
+                          <p className="text-[10px] text-on-surface-variant max-w-sm">Requires role level &gt;= {selectedFile.min}. Pre-scoring vector clearance returned null.</p>
                         </div>
                       ) : (
-                        <div className="w-full h-full font-sans text-zinc-100 text-sm leading-relaxed self-start">
+                        <div className="w-full h-full font-sans text-on-surface text-sm leading-relaxed self-start">
                           {isSuperseded && (
-                            <div className="mb-3 border border-amber-500/30 bg-amber-500/5 text-amber-550 rounded p-2 text-xs flex items-center gap-2 font-mono">
+                            <div className="mb-3 border border-transparent bg-error-container text-on-error-container rounded p-2 text-xs flex items-center gap-2 font-mono">
                               <AlertTriangle className="h-4 w-4 shrink-0" />
                               <span>SUPERSEDED BY UPDATE MEM-004B (ACTIVE RUN)</span>
                             </div>
                           )}
                           <p>{selectedFile.text}</p>
-                          <p className="mt-4 font-mono text-xs text-zinc-500 italic border-t border-neutral-800 pt-2.5">
+                          <p className="mt-4 font-mono text-xs text-on-surface-variant italic border-t border-outline-variant pt-2.5">
                             Source Reference: {selectedFile.src}
                           </p>
                         </div>
                       )}
                     </div>
 
-                    <div className="text-[10px] flex flex-col gap-1 text-zinc-650 border-t border-border/40 pt-3">
+                    <div className="text-[10px] flex flex-col gap-1 text-on-surface-variant border-t border-outline-variant/40 pt-3">
                       <span>KEY_SIG: {isLocked ? "REVOKED_DECRYPT_KEY_INVALID" : selectedFile.sig}</span>
                       <span>CIPHER: {isLocked ? "AES_256_GCM_ENCRYPTED_LOCKED" : "PLAIN_TEXT_SCOPED_DECRYPTED"}</span>
                     </div>
@@ -412,10 +412,10 @@ export function RoleQuerySimulator() {
         {activeTab === "query" && (
           <div className="space-y-4">
             {/* Console */}
-            <div className="flex h-[280px] flex-col rounded-lg border border-[#2D2A20] bg-[#13120F] p-4 font-mono text-xs md:text-sm text-zinc-200">
+            <div className="flex h-[280px] flex-col rounded-2xl border border-outline-variant bg-surface-container-low p-4 font-mono text-xs md:text-sm text-on-surface">
               <div className="flex-grow overflow-y-auto space-y-3.5 pr-1 scrollbar-thin">
                 {messages.length === 0 && (
-                  <div className="flex h-full flex-col items-center justify-center text-center text-zinc-500 font-sans">
+                  <div className="flex h-full flex-col items-center justify-center text-center text-on-surface-variant font-sans">
                     <Send className="h-8 w-8 mb-2 opacity-40 animate-pulse text-primary" />
                     <span>Search Engine Idle. Pick a query queue option below to test filtering.</span>
                   </div>
@@ -425,9 +425,9 @@ export function RoleQuerySimulator() {
                   if (msg.sender === "user") {
                     return (
                       <div key={idx} className="flex justify-end">
-                        <div className="max-w-[85%] rounded-lg bg-[#2D2A20] border border-[#443E2C] p-3 text-right">
-                          <p className="font-semibold text-zinc-100">{msg.text}</p>
-                          <span className="text-[9px] text-zinc-400 opacity-85 uppercase tracking-widest mt-1 block font-mono">Asked as: {msg.roleLabel}</span>
+                        <div className="max-w-[85%] rounded-2xl rounded-br-md bg-primary-container border border-transparent p-3 text-right">
+                          <p className="font-medium text-on-primary-container">{msg.text}</p>
+                          <span className="text-[9px] text-on-primary-container/70 uppercase tracking-widest mt-1 block font-mono">Asked as: {msg.roleLabel}</span>
                         </div>
                       </div>
                     );
@@ -437,10 +437,10 @@ export function RoleQuerySimulator() {
                     return (
                       <div key={idx} className={`flex items-start gap-1.5 p-2 rounded-lg border text-[10px] ${
                         isWarn
-                          ? "bg-amber-950/20 border-amber-900/30 text-amber-400"
+                          ? "bg-error-container border-transparent text-on-error-container"
                           : msg.type === "success"
-                          ? "bg-emerald-950/20 border-emerald-900/30 text-emerald-400"
-                          : "bg-blue-950/20 border-blue-900/30 text-blue-400"
+                          ? "bg-tertiary-container border-transparent text-on-tertiary-container"
+                          : "bg-secondary-container border-transparent text-on-secondary-container"
                       }`}>
                         {isWarn ? <AlertCircle className="h-3.5 w-3.5 shrink-0" /> : <CheckCircle className="h-3.5 w-3.5 shrink-0" />}
                         <span>{msg.text}</span>
@@ -449,10 +449,10 @@ export function RoleQuerySimulator() {
                   }
                   return (
                     <div key={idx} className="flex justify-start">
-                      <div className="max-w-[90%] rounded-lg bg-[#181714] border border-[#2C2A20] p-3">
-                        <p className="text-zinc-200 leading-relaxed text-xs sm:text-sm">{msg.text}</p>
+                      <div className="max-w-[90%] rounded-2xl rounded-bl-md bg-surface-container-highest border border-transparent p-3">
+                        <p className="text-on-surface leading-relaxed text-xs sm:text-sm">{msg.text}</p>
                         {msg.subtext && (
-                          <span className="text-[10px] text-zinc-500 mt-2 block border-t border-neutral-800 pt-1.5 italic font-sans">{msg.subtext}</span>
+                          <span className="text-[10px] text-on-surface-variant mt-2 block border-t border-outline-variant pt-1.5 italic font-sans">{msg.subtext}</span>
                         )}
                       </div>
                     </div>
@@ -461,7 +461,7 @@ export function RoleQuerySimulator() {
 
                 {isTyping && (
                   <div className="flex justify-start">
-                    <div className="rounded-lg bg-[#181714] border border-[#2C2A20] p-3 text-zinc-550">
+                    <div className="rounded-2xl rounded-bl-md bg-surface-container-highest border border-transparent p-3 text-on-surface-variant">
                       <span className="inline-flex gap-1">
                         <span className="animate-bounce">●</span>
                         <span className="animate-bounce [animation-delay:0.2s]">●</span>
@@ -489,7 +489,7 @@ export function RoleQuerySimulator() {
                         : "border-outline-variant bg-surface-container hover:bg-on-surface/8 text-on-surface-variant hover:text-on-surface"
                     }`}
                   >
-                    🔍 &nbsp;{q.q}
+                    {q.q}
                   </button>
                 ))}
               </div>
@@ -508,7 +508,7 @@ export function RoleQuerySimulator() {
                 <div className="border border-border rounded-xl p-4 bg-foreground/[0.02] space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-foreground">1. PARTNER DEPARTURE</span>
-                    <span className={`text-[9px] border px-1.5 rounded font-bold ${resigned ? "border-red-500/30 text-red-500 bg-red-500/5" : "border-border text-muted-foreground"}`}>
+                    <span className={`text-[9px] border px-1.5 rounded font-bold ${resigned ? "border-transparent text-on-error-container bg-error-container" : "border-border text-muted-foreground"}`}>
                       {resigned ? "SIMULATED" : "INACTIVE"}
                     </span>
                   </div>
@@ -519,7 +519,7 @@ export function RoleQuerySimulator() {
                     onClick={() => setResigned(!resigned)}
                     className={`w-full p-2.5 rounded-lg border font-bold transition-colors ${
                       resigned
-                        ? "border-red-500 bg-red-500/10 text-red-500"
+                        ? "border-transparent bg-error-container text-on-error-container"
                         : "border-outline bg-primary text-on-primary hover:bg-primary/90 active:bg-primary/80"
                     }`}
                   >
@@ -531,7 +531,7 @@ export function RoleQuerySimulator() {
                 <div className="border border-outline-variant rounded-lg p-4 bg-surface-container space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-foreground">2. FACT SUPERSESSION</span>
-                    <span className={`text-[9px] border px-1.5 rounded font-bold ${corrected ? "border-emerald-500/30 text-emerald-500 bg-emerald-500/5" : "border-outline-variant text-on-surface-variant"}`}>
+                    <span className={`text-[9px] border px-1.5 rounded font-bold ${corrected ? "border-transparent text-on-tertiary-container bg-tertiary-container" : "border-outline-variant text-on-surface-variant"}`}>
                       {corrected ? "UPDATED" : "INACTIVE"}
                     </span>
                   </div>
@@ -542,7 +542,7 @@ export function RoleQuerySimulator() {
                     onClick={() => setCorrected(!corrected)}
                     className={`w-full p-2.5 rounded-lg border font-bold transition-colors ${
                       corrected
-                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-500"
+                        ? "border-transparent bg-tertiary-container text-on-tertiary-container"
                         : "border-outline bg-primary text-on-primary hover:bg-primary/90 active:bg-primary/80"
                     }`}
                   >
@@ -556,14 +556,14 @@ export function RoleQuerySimulator() {
             <div className="border border-outline-variant rounded-lg p-4 bg-surface-container flex flex-col">
               <div className="flex items-center justify-between border-b border-outline-variant pb-3 mb-3">
                 <span className="font-bold text-foreground">3. OPEN MEMORY EXPORT</span>
-                <span className="text-[9px] uppercase border border-emerald-500/30 text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded font-bold">
+                <span className="text-[9px] uppercase border border-transparent text-on-tertiary-container bg-tertiary-container px-2 py-0.5 rounded font-bold">
                   open-memory/v1
                 </span>
               </div>
               <p className="text-on-surface-variant text-[11px] font-sans leading-normal mb-3">
                 Heirloom decoupled memory can be exported as a standard portable JSON. Swapping AI vendors (e.g. from OpenAI to Anthropic) never means losing institutional context.
               </p>
-              <div className="flex-1 bg-[#13120F] border border-[#2D2A20] rounded-lg p-2.5 overflow-auto max-h-[200px] text-[10px] text-zinc-400 font-mono scrollbar-thin">
+              <div className="flex-1 bg-surface-container-highest border border-outline-variant rounded-lg p-2.5 overflow-auto max-h-[200px] text-[10px] text-on-surface-variant font-mono scrollbar-thin">
                 <pre>{getExportJSON()}</pre>
               </div>
               <button 

@@ -99,11 +99,11 @@ export default function LandingPage() {
           </section>
 
           {/* Detailed Problem Statement (Error Container style for urgency) */}
-          <section className="rounded-[16px] bg-[#F9DEDC] dark:bg-[#8C1D18] p-6 space-y-4">
-            <h3 className="text-title-lg font-medium text-[#410E0B] dark:text-[#F9DEDC] inline-flex items-center gap-2">
+          <section className="rounded-lg bg-error-container p-6 space-y-4">
+            <h3 className="text-title-lg font-medium text-on-error-container inline-flex items-center gap-2">
               <AlertTriangle className="h-5 w-5" /> The Business Risk of Vendor Lock-In
             </h3>
-            <p className="text-body-lg text-[#410E0B] dark:text-[#F9DEDC] leading-relaxed">
+            <p className="text-body-lg text-on-error-container leading-relaxed">
               When you feed your company data into generic corporate assistants, you create a double write-off. If a partner leaves, their reasoning evaporates. If you switch AI vendors, you lose the entire context the assistant built. 
               <br /><br />
               Heirloom implements a neutral, portable memory schema. <strong>Satya Nadella</strong> has highlighted this exact challenge, urging enterprises to build systems that retain institutional knowledge while remaining free to swap underlying models (<a href="https://www.edtechinnovationhub.com/news/microsoft-ceo-satya-nadella-says-companies-must-own-the-ai-learning-loops-shaping-their-future" target="_blank" rel="noreferrer" className="underline font-medium">Nadella on Learning Loops</a>).

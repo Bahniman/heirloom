@@ -247,7 +247,7 @@ export function RoleQuerySimulator() {
         </div>
         <button
           onClick={resetDemos}
-          className="btn-press self-start flex h-8 items-center gap-1.5 rounded-lg border border-border bg-foreground/5 px-3 text-xs text-muted-foreground hover:bg-foreground/10 hover:text-foreground"
+          className="self-start flex h-8 items-center gap-1.5 rounded-lg border border-outline-variant bg-surface-container-low px-3 text-xs text-on-surface hover:bg-on-surface/8 hover:text-on-surface transition-colors"
         >
           <RefreshCw className="h-3.5 w-3.5" /> Reset Sandbox
         </button>
@@ -264,13 +264,13 @@ export function RoleQuerySimulator() {
               <button
                 key={idx}
                 onClick={() => setRole(idx)}
-                className={`btn-press flex flex-col items-center justify-center gap-1.5 rounded-xl border p-3 text-center transition-all ${
+                className={`flex flex-col items-center justify-center gap-1.5 rounded-lg border p-3 text-center transition-all ${
                   isSelected
-                    ? "border-accent bg-accent/15 text-foreground font-semibold shadow-[0_0_12px_rgba(237,255,0,0.15)]"
-                    : "border-border bg-foreground/[0.02] text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
+                    ? "border-primary bg-primary-container text-on-primary-container font-semibold"
+                    : "border-outline-variant bg-surface-container text-on-surface-variant hover:bg-on-surface/8 hover:text-on-surface"
                 }`}
               >
-                <Icon className={`h-4.5 w-4.5 ${isSelected ? "text-accent" : "text-muted-foreground"}`} />
+                <Icon className={`h-4.5 w-4.5 ${isSelected ? "text-primary" : "text-on-surface-variant"}`} />
                 <span className="text-[10px] font-bold uppercase tracking-wider">{name.split(" ")[0]}</span>
               </button>
             );
@@ -279,15 +279,15 @@ export function RoleQuerySimulator() {
       </div>
 
       {/* Main Tabs */}
-      <div className="flex border-b border-border">
+      <div className="flex border-b border-outline-variant">
         {(["explorer", "query", "lifecycle"] as const).map((t) => (
           <button
             key={t}
             onClick={() => setActiveTab(t)}
             className={`border-b-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
               activeTab === t
-                ? "border-accent text-foreground"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "border-primary text-primary"
+                : "border-transparent text-on-surface-variant hover:text-on-surface"
             }`}
           >
             {t === "explorer" ? "📁 Vault Explorer" : t === "query" ? "🔍 Scoped Search" : "⚙️ Lifecycle Events"}
@@ -300,8 +300,8 @@ export function RoleQuerySimulator() {
         {activeTab === "explorer" && (
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
             {/* File List */}
-            <div className="md:col-span-5 border border-border rounded-xl p-3 bg-foreground/[0.01] space-y-2">
-              <span className="font-mono text-[9px] uppercase font-bold text-muted-foreground tracking-wider block border-b border-border pb-1.5 mb-2">Vault Index</span>
+            <div className="md:col-span-5 border border-outline-variant rounded-lg p-3 bg-surface-container-low space-y-2">
+              <span className="font-mono text-[9px] uppercase font-bold text-on-surface-variant tracking-wider block border-b border-outline-variant pb-1.5 mb-2">Vault Index</span>
               <div className="space-y-1.5 max-h-[320px] overflow-y-auto">
                 {MEMORIES.map((m) => {
                   const isLocked = m.min > role;
@@ -315,24 +315,24 @@ export function RoleQuerySimulator() {
                       disabled={isResignedPartner}
                       className={`w-full text-left p-2.5 rounded-lg border flex items-center justify-between text-xs transition-colors ${
                         isResignedPartner 
-                          ? "opacity-35 cursor-not-allowed border-dashed bg-foreground/[0.01]" 
+                          ? "opacity-35 cursor-not-allowed border-dashed bg-surface-container" 
                           : selectedFile?.id === m.id
-                          ? "border-accent bg-accent/5 text-foreground font-semibold"
-                          : "border-border/60 hover:bg-foreground/5 text-muted-foreground hover:text-foreground"
+                          ? "border-primary bg-primary-container text-on-primary-container font-semibold"
+                          : "border-outline-variant hover:bg-on-surface/8 text-on-surface-variant hover:text-on-surface"
                       }`}
                     >
                       <span className="flex items-center gap-2 truncate">
-                        <FileText className={`h-4 w-4 shrink-0 ${isLocked ? "text-muted-foreground" : "text-accent"}`} />
+                        <FileText className={`h-4 w-4 shrink-0 ${isLocked ? "text-on-surface-variant" : "text-primary"}`} />
                         <span className="truncate">{m.title}</span>
                       </span>
                       {isResignedPartner ? (
-                        <span className="font-mono text-[8px] border border-red-500/30 text-red-500 bg-red-500/5 px-1 rounded">REVOKED</span>
+                        <span className="font-mono text-[8px] border border-error/30 text-error bg-error/5 px-1 rounded">REVOKED</span>
                       ) : isSuperseded ? (
-                        <span className="font-mono text-[8px] border border-amber-500/30 text-amber-500 bg-amber-500/5 px-1 rounded">SUPERSEDED</span>
+                        <span className="font-mono text-[8px] border border-warning/30 text-warning bg-warning/5 px-1 rounded">SUPERSEDED</span>
                       ) : isLocked ? (
-                        <Lock className="h-3 w-3 text-muted-foreground shrink-0" />
+                        <Lock className="h-3 w-3 text-on-surface-variant shrink-0" />
                       ) : (
-                        <Unlock className="h-3 w-3 text-accent shrink-0" />
+                        <Unlock className="h-3 w-3 text-primary shrink-0" />
                       )}
                     </button>
                   );
@@ -341,11 +341,11 @@ export function RoleQuerySimulator() {
             </div>
 
             {/* File Viewer */}
-            <div className="md:col-span-7 border border-border rounded-xl p-4 bg-[#0A0A0B] relative">
-              <div className="absolute top-2 right-2 w-4 h-1 border-t border-r border-border" />
-              <div className="absolute bottom-2 right-2 w-4 h-1 border-b border-r border-border" />
-              <div className="absolute top-2 left-2 w-4 h-1 border-t border-l border-border" />
-              <div className="absolute bottom-2 left-2 w-4 h-1 border-b border-l border-border" />
+            <div className="md:col-span-7 border border-outline-variant rounded-lg p-4 bg-surface-container-high relative">
+              <div className="absolute top-2 right-2 w-4 h-1 border-t border-r border-outline-variant" />
+              <div className="absolute bottom-2 right-2 w-4 h-1 border-b border-r border-outline-variant" />
+              <div className="absolute top-2 left-2 w-4 h-1 border-t border-l border-outline-variant" />
+              <div className="absolute bottom-2 left-2 w-4 h-1 border-b border-l border-outline-variant" />
 
               {selectedFile ? (() => {
                 const isLocked = selectedFile.min > role;
@@ -371,11 +371,11 @@ export function RoleQuerySimulator() {
                       </div>
                     </div>
 
-                    <div className="flex-1 min-h-[120px] bg-black/40 border border-border/60 rounded-lg p-3 relative flex items-center justify-center">
+                    <div className="flex-1 min-h-[120px] bg-surface-container border border-outline-variant rounded-lg p-3 relative flex items-center justify-center">
                       {isLocked ? (
                         <div className="text-center space-y-2 p-4 animate-pulse">
-                          <Lock className="h-8 w-8 mx-auto text-red-500/80" />
-                          <p className="font-bold text-red-500">DECRYPTION FAILURE [UNAUTHORIZED]</p>
+                          <Lock className="h-8 w-8 mx-auto text-error" />
+                          <p className="font-bold text-error">DECRYPTION FAILURE [UNAUTHORIZED]</p>
                           <p className="text-[10px] text-muted-foreground max-w-sm">Requires role level &gt;= {selectedFile.min}. Pre-scoring vector clearance returned null.</p>
                         </div>
                       ) : (
@@ -412,11 +412,11 @@ export function RoleQuerySimulator() {
         {activeTab === "query" && (
           <div className="space-y-4">
             {/* Console */}
-            <div className="flex h-[280px] flex-col rounded-xl border border-border bg-[#0A0A0B] p-4 font-mono text-xs md:text-sm">
+            <div className="flex h-[280px] flex-col rounded-lg border border-outline-variant bg-surface-container-high p-4 font-mono text-xs md:text-sm">
               <div className="flex-grow overflow-y-auto space-y-3.5 pr-1 scrollbar-thin">
                 {messages.length === 0 && (
-                  <div className="flex h-full flex-col items-center justify-center text-center text-muted-foreground/60 font-sans">
-                    <Send className="h-8 w-8 mb-2 opacity-40 animate-pulse text-accent" />
+                  <div className="flex h-full flex-col items-center justify-center text-center text-on-surface-variant font-sans">
+                    <Send className="h-8 w-8 mb-2 opacity-40 animate-pulse text-primary" />
                     <span>Search Engine Idle. Pick a query queue option below to test filtering.</span>
                   </div>
                 )}
@@ -425,9 +425,9 @@ export function RoleQuerySimulator() {
                   if (msg.sender === "user") {
                     return (
                       <div key={idx} className="flex justify-end">
-                        <div className="max-w-[85%] rounded-xl bg-accent/15 border border-accent/30 p-3 text-right">
-                          <p className="font-semibold text-foreground">{msg.text}</p>
-                          <span className="text-[9px] text-muted-foreground opacity-80 uppercase tracking-widest mt-1 block font-mono">Asked as: {msg.roleLabel}</span>
+                        <div className="max-w-[85%] rounded-lg bg-primary-container border border-primary/20 p-3 text-right">
+                          <p className="font-semibold text-on-primary-container">{msg.text}</p>
+                          <span className="text-[9px] text-on-primary-container opacity-80 uppercase tracking-widest mt-1 block font-mono">Asked as: {msg.roleLabel}</span>
                         </div>
                       </div>
                     );
@@ -483,10 +483,10 @@ export function RoleQuerySimulator() {
                     key={idx}
                     onClick={() => handleAsk(idx)}
                     disabled={isTyping}
-                    className={`btn-press rounded-lg border text-left p-3 text-xs md:text-sm font-medium transition-all ${
+                    className={`rounded-lg border text-left p-3 text-xs md:text-sm font-medium transition-all ${
                       lastQueryIdx === idx
-                        ? "border-accent bg-accent/5 text-foreground"
-                        : "border-border/60 bg-foreground/[0.01] hover:bg-foreground/5 hover:border-border text-muted-foreground hover:text-foreground"
+                        ? "border-primary bg-primary-container text-on-primary-container"
+                        : "border-outline-variant bg-surface-container hover:bg-on-surface/8 text-on-surface-variant hover:text-on-surface"
                     }`}
                   >
                     🔍 &nbsp;{q.q}
@@ -517,10 +517,10 @@ export function RoleQuerySimulator() {
                   </p>
                   <button
                     onClick={() => setResigned(!resigned)}
-                    className={`btn-press w-full p-2.5 rounded-lg border font-bold ${
+                    className={`w-full p-2.5 rounded-lg border font-bold transition-colors ${
                       resigned
-                        ? "border-red-500 bg-red-500/10 text-red-400"
-                        : "border-accent bg-accent text-accent-foreground shadow-[2px_2px_0_#161616]"
+                        ? "border-red-500 bg-red-500/10 text-red-500"
+                        : "border-outline bg-primary text-on-primary hover:bg-primary/90 active:bg-primary/80"
                     }`}
                   >
                     {resigned ? "Restore Partner Keys" : "Simulate Key Revocation"}
@@ -528,22 +528,22 @@ export function RoleQuerySimulator() {
                 </div>
 
                 {/* Event 2 */}
-                <div className="border border-border rounded-xl p-4 bg-foreground/[0.02] space-y-3">
+                <div className="border border-outline-variant rounded-lg p-4 bg-surface-container space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-foreground">2. FACT SUPERSESSION</span>
-                    <span className={`text-[9px] border px-1.5 rounded font-bold ${corrected ? "border-emerald-500/30 text-emerald-500 bg-emerald-500/5" : "border-border text-muted-foreground"}`}>
+                    <span className={`text-[9px] border px-1.5 rounded font-bold ${corrected ? "border-emerald-500/30 text-emerald-500 bg-emerald-500/5" : "border-outline-variant text-on-surface-variant"}`}>
                       {corrected ? "UPDATED" : "INACTIVE"}
                     </span>
                   </div>
-                  <p className="text-muted-foreground text-[11px] font-sans leading-normal">
+                  <p className="text-on-surface-variant text-[11px] font-sans leading-normal">
                     Adds a new corrected record (Client K migration review cleared) that supersedes the outdated delay fact in searches.
                   </p>
                   <button
                     onClick={() => setCorrected(!corrected)}
-                    className={`btn-press w-full p-2.5 rounded-lg border font-bold ${
+                    className={`w-full p-2.5 rounded-lg border font-bold transition-colors ${
                       corrected
-                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-400"
-                        : "border-accent bg-accent text-accent-foreground shadow-[2px_2px_0_#161616]"
+                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-500"
+                        : "border-outline bg-primary text-on-primary hover:bg-primary/90 active:bg-primary/80"
                     }`}
                   >
                     {corrected ? "Restore Old Fact State" : "Simulate Fact Correction"}
@@ -553,17 +553,17 @@ export function RoleQuerySimulator() {
             </div>
 
             {/* Open Export JSON */}
-            <div className="border border-border rounded-xl p-4 bg-[#0A0A0B] flex flex-col">
-              <div className="flex items-center justify-between border-b border-border/40 pb-3 mb-3">
+            <div className="border border-outline-variant rounded-lg p-4 bg-surface-container-high flex flex-col">
+              <div className="flex items-center justify-between border-b border-outline-variant pb-3 mb-3">
                 <span className="font-bold text-foreground">3. OPEN MEMORY EXPORT</span>
                 <span className="text-[9px] uppercase border border-emerald-500/30 text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded font-bold">
                   open-memory/v1
                 </span>
               </div>
-              <p className="text-muted-foreground text-[11px] font-sans leading-normal mb-3">
+              <p className="text-on-surface-variant text-[11px] font-sans leading-normal mb-3">
                 Heirloom decoupled memory can be exported as a standard portable JSON. Swapping AI vendors (e.g. from OpenAI to Anthropic) never means losing institutional context.
               </p>
-              <div className="flex-1 bg-black/40 border border-border/60 rounded-lg p-2.5 overflow-auto max-h-[200px] text-[10px] text-zinc-400 font-mono scrollbar-thin">
+              <div className="flex-1 bg-surface-container border border-outline-variant rounded-lg p-2.5 overflow-auto max-h-[200px] text-[10px] text-on-surface-variant font-mono scrollbar-thin">
                 <pre>{getExportJSON()}</pre>
               </div>
               <button 
@@ -571,7 +571,7 @@ export function RoleQuerySimulator() {
                   navigator.clipboard.writeText(getExportJSON());
                   alert("Open Memory Schema JSON copied to clipboard!");
                 }}
-                className="btn-press mt-3 flex items-center justify-center gap-2 p-2.5 border border-border bg-foreground/5 text-foreground hover:bg-foreground/10 rounded-lg font-bold"
+                className="mt-3 flex items-center justify-center gap-2 p-2.5 border border-outline bg-surface-container-low text-on-surface hover:bg-on-surface/8 rounded-lg font-bold transition-colors"
               >
                 <Download className="h-4 w-4" /> Copy Export Schema
               </button>

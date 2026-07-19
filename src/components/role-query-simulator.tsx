@@ -371,30 +371,30 @@ export function RoleQuerySimulator() {
                       </div>
                     </div>
 
-                    <div className="flex-1 min-h-[120px] bg-surface-container border border-outline-variant rounded-lg p-3 relative flex items-center justify-center">
+                    <div className="flex-1 min-h-[120px] bg-[#13120F] border border-[#2D2A20] rounded-lg p-3 relative flex items-center justify-center">
                       {isLocked ? (
                         <div className="text-center space-y-2 p-4 animate-pulse">
                           <Lock className="h-8 w-8 mx-auto text-error" />
                           <p className="font-bold text-error">DECRYPTION FAILURE [UNAUTHORIZED]</p>
-                          <p className="text-[10px] text-muted-foreground max-w-sm">Requires role level &gt;= {selectedFile.min}. Pre-scoring vector clearance returned null.</p>
+                          <p className="text-[10px] text-zinc-500 max-w-sm">Requires role level &gt;= {selectedFile.min}. Pre-scoring vector clearance returned null.</p>
                         </div>
                       ) : (
-                        <div className="w-full h-full font-sans text-foreground text-sm leading-relaxed self-start">
+                        <div className="w-full h-full font-sans text-zinc-100 text-sm leading-relaxed self-start">
                           {isSuperseded && (
-                            <div className="mb-3 border border-amber-500/30 bg-amber-500/5 text-amber-500 rounded p-2 text-xs flex items-center gap-2 font-mono">
+                            <div className="mb-3 border border-amber-500/30 bg-amber-500/5 text-amber-550 rounded p-2 text-xs flex items-center gap-2 font-mono">
                               <AlertTriangle className="h-4 w-4 shrink-0" />
                               <span>SUPERSEDED BY UPDATE MEM-004B (ACTIVE RUN)</span>
                             </div>
                           )}
                           <p>{selectedFile.text}</p>
-                          <p className="mt-4 font-mono text-xs text-muted-foreground italic border-t border-border/20 pt-2.5">
+                          <p className="mt-4 font-mono text-xs text-zinc-500 italic border-t border-neutral-800 pt-2.5">
                             Source Reference: {selectedFile.src}
                           </p>
                         </div>
                       )}
                     </div>
 
-                    <div className="text-[10px] flex flex-col gap-1 text-muted-foreground/50 border-t border-border/40 pt-3">
+                    <div className="text-[10px] flex flex-col gap-1 text-zinc-650 border-t border-border/40 pt-3">
                       <span>KEY_SIG: {isLocked ? "REVOKED_DECRYPT_KEY_INVALID" : selectedFile.sig}</span>
                       <span>CIPHER: {isLocked ? "AES_256_GCM_ENCRYPTED_LOCKED" : "PLAIN_TEXT_SCOPED_DECRYPTED"}</span>
                     </div>
@@ -412,10 +412,10 @@ export function RoleQuerySimulator() {
         {activeTab === "query" && (
           <div className="space-y-4">
             {/* Console */}
-            <div className="flex h-[280px] flex-col rounded-lg border border-outline-variant bg-surface-container-high p-4 font-mono text-xs md:text-sm">
+            <div className="flex h-[280px] flex-col rounded-lg border border-[#2D2A20] bg-[#13120F] p-4 font-mono text-xs md:text-sm text-zinc-200">
               <div className="flex-grow overflow-y-auto space-y-3.5 pr-1 scrollbar-thin">
                 {messages.length === 0 && (
-                  <div className="flex h-full flex-col items-center justify-center text-center text-on-surface-variant font-sans">
+                  <div className="flex h-full flex-col items-center justify-center text-center text-zinc-500 font-sans">
                     <Send className="h-8 w-8 mb-2 opacity-40 animate-pulse text-primary" />
                     <span>Search Engine Idle. Pick a query queue option below to test filtering.</span>
                   </div>
@@ -425,9 +425,9 @@ export function RoleQuerySimulator() {
                   if (msg.sender === "user") {
                     return (
                       <div key={idx} className="flex justify-end">
-                        <div className="max-w-[85%] rounded-lg bg-primary-container border border-primary/20 p-3 text-right">
-                          <p className="font-semibold text-on-primary-container">{msg.text}</p>
-                          <span className="text-[9px] text-on-primary-container opacity-80 uppercase tracking-widest mt-1 block font-mono">Asked as: {msg.roleLabel}</span>
+                        <div className="max-w-[85%] rounded-lg bg-[#2D2A20] border border-[#443E2C] p-3 text-right">
+                          <p className="font-semibold text-zinc-100">{msg.text}</p>
+                          <span className="text-[9px] text-zinc-400 opacity-85 uppercase tracking-widest mt-1 block font-mono">Asked as: {msg.roleLabel}</span>
                         </div>
                       </div>
                     );
@@ -437,10 +437,10 @@ export function RoleQuerySimulator() {
                     return (
                       <div key={idx} className={`flex items-start gap-1.5 p-2 rounded-lg border text-[10px] ${
                         isWarn
-                          ? "bg-amber-500/5 border-amber-500/20 text-amber-500"
+                          ? "bg-amber-950/20 border-amber-900/30 text-amber-400"
                           : msg.type === "success"
-                          ? "bg-emerald-500/5 border-emerald-500/20 text-emerald-500"
-                          : "bg-blue-500/5 border-blue-500/20 text-blue-500"
+                          ? "bg-emerald-950/20 border-emerald-900/30 text-emerald-400"
+                          : "bg-blue-950/20 border-blue-900/30 text-blue-400"
                       }`}>
                         {isWarn ? <AlertCircle className="h-3.5 w-3.5 shrink-0" /> : <CheckCircle className="h-3.5 w-3.5 shrink-0" />}
                         <span>{msg.text}</span>
@@ -449,10 +449,10 @@ export function RoleQuerySimulator() {
                   }
                   return (
                     <div key={idx} className="flex justify-start">
-                      <div className="max-w-[90%] rounded-xl bg-foreground/[0.04] border border-border/80 p-3">
-                        <p className="text-foreground leading-relaxed text-xs sm:text-sm">{msg.text}</p>
+                      <div className="max-w-[90%] rounded-lg bg-[#181714] border border-[#2C2A20] p-3">
+                        <p className="text-zinc-200 leading-relaxed text-xs sm:text-sm">{msg.text}</p>
                         {msg.subtext && (
-                          <span className="text-[10px] text-muted-foreground mt-2 block border-t border-border/40 pt-1.5 italic font-sans">{msg.subtext}</span>
+                          <span className="text-[10px] text-zinc-500 mt-2 block border-t border-neutral-800 pt-1.5 italic font-sans">{msg.subtext}</span>
                         )}
                       </div>
                     </div>
@@ -461,7 +461,7 @@ export function RoleQuerySimulator() {
 
                 {isTyping && (
                   <div className="flex justify-start">
-                    <div className="rounded-xl bg-foreground/[0.02] border border-border/40 p-3 text-muted-foreground">
+                    <div className="rounded-lg bg-[#181714] border border-[#2C2A20] p-3 text-zinc-550">
                       <span className="inline-flex gap-1">
                         <span className="animate-bounce">●</span>
                         <span className="animate-bounce [animation-delay:0.2s]">●</span>
@@ -553,7 +553,7 @@ export function RoleQuerySimulator() {
             </div>
 
             {/* Open Export JSON */}
-            <div className="border border-outline-variant rounded-lg p-4 bg-surface-container-high flex flex-col">
+            <div className="border border-outline-variant rounded-lg p-4 bg-surface-container flex flex-col">
               <div className="flex items-center justify-between border-b border-outline-variant pb-3 mb-3">
                 <span className="font-bold text-foreground">3. OPEN MEMORY EXPORT</span>
                 <span className="text-[9px] uppercase border border-emerald-500/30 text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded font-bold">
@@ -563,7 +563,7 @@ export function RoleQuerySimulator() {
               <p className="text-on-surface-variant text-[11px] font-sans leading-normal mb-3">
                 Heirloom decoupled memory can be exported as a standard portable JSON. Swapping AI vendors (e.g. from OpenAI to Anthropic) never means losing institutional context.
               </p>
-              <div className="flex-1 bg-surface-container border border-outline-variant rounded-lg p-2.5 overflow-auto max-h-[200px] text-[10px] text-on-surface-variant font-mono scrollbar-thin">
+              <div className="flex-1 bg-[#13120F] border border-[#2D2A20] rounded-lg p-2.5 overflow-auto max-h-[200px] text-[10px] text-zinc-400 font-mono scrollbar-thin">
                 <pre>{getExportJSON()}</pre>
               </div>
               <button 

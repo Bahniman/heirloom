@@ -33,12 +33,13 @@ export default function LandingPage() {
                 Heirloom
               </span>
             </a>
-            <nav className="flex items-center gap-4">
+            <nav className="flex items-center gap-2 sm:gap-4">
               <a
                 href="https://bahniman.github.io"
-                className="text-label-lg font-medium hover:text-primary transition-colors"
+                className="text-xs sm:text-sm font-medium hover:text-primary transition-colors whitespace-nowrap"
               >
-                ← Back to Portal
+                <span className="hidden sm:inline">← Back to Portal</span>
+                <span className="sm:hidden">← Portal</span>
               </a>
               <a
                 href="https://github.com/Bahniman/heirloom"
@@ -63,7 +64,7 @@ export default function LandingPage() {
             <div className="inline-flex items-center gap-2 rounded-full bg-surface-container-high px-4 py-1.5 text-label-lg font-medium text-primary">
               <Award className="h-4 w-4" /> Startup Lab · Knowledge Asset Protection
             </div>
-            <h1 className="text-[45px] leading-[52px] md:text-[57px] md:leading-[64px] font-normal text-on-surface">
+            <h1 className="text-4xl leading-tight md:text-[57px] md:leading-[64px] font-normal text-on-surface">
               The firm's memory,<br />owned by the firm.
             </h1>
             <p className="text-title-lg leading-relaxed text-on-surface-variant max-w-[760px]">

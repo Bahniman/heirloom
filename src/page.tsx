@@ -64,7 +64,7 @@ export default function LandingPage() {
             <div className="inline-flex items-center gap-2 rounded-lg border border-primary/25 bg-primary-container/40 px-4 py-2 text-label-lg font-medium text-primary transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)]">
               <Award className="h-4 w-4" /> Startup Lab · Knowledge Asset Protection
             </div>
-            <h1 className="text-[42px] leading-[48px] md:text-[60px] md:leading-[66px] font-medium tracking-[-1.2px] text-on-surface">
+            <h1 className="text-[40px] leading-[46px] md:text-[57px] md:leading-[64px] tracking-[-0.25px] font-medium text-on-surface">
               The firm's memory,<br />owned by the firm.
             </h1>
             <p className="text-title-lg leading-relaxed text-on-surface-variant max-w-[760px]">

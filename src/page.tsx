@@ -25,7 +25,7 @@ export default function LandingPage() {
     <div className="relative min-h-screen bg-surface text-on-surface font-sans">
       
       {/* M3 Top App Bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-border">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-outline-variant/50 bg-surface/80 backdrop-blur-xl backdrop-saturate-150">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex items-center justify-between h-16">
             <a href="#" className="flex items-center gap-2.5">
@@ -61,10 +61,10 @@ export default function LandingPage() {
           
           {/* M3 Hero Section */}
           <section className="space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 rounded-full bg-surface-container-high px-4 py-1.5 text-label-lg font-medium text-primary">
+            <div className="inline-flex items-center gap-2 rounded-lg border border-primary/25 bg-primary-container/40 px-4 py-2 text-label-lg font-medium text-primary transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:rounded-full">
               <Award className="h-4 w-4" /> Startup Lab · Knowledge Asset Protection
             </div>
-            <h1 className="text-4xl leading-tight md:text-[57px] md:leading-[64px] font-normal text-on-surface">
+            <h1 className="text-[42px] leading-[48px] md:text-[60px] md:leading-[66px] font-medium tracking-[-1.2px] text-on-surface">
               The firm's memory,<br />owned by the firm.
             </h1>
             <p className="text-title-lg leading-relaxed text-on-surface-variant max-w-[760px]">
@@ -74,7 +74,7 @@ export default function LandingPage() {
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href="#demo"
-                className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-label-lg font-medium hover:bg-[color-mix(in_srgb,var(--md-sys-color-on-primary)_8%,var(--md-sys-color-primary))] transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-primary text-on-primary px-6 py-3 text-label-lg font-medium hover:bg-[color-mix(in_srgb,var(--md-sys-color-on-primary)_8%,var(--md-sys-color-primary))] transition-colors"
               >
                 Try Interactive Demo <ArrowRight className="h-4 w-4" />
               </a>
@@ -92,7 +92,7 @@ export default function LandingPage() {
           {/* M3 Stats Bar (Outlined Cards) */}
           <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s, idx) => (
-              <div key={idx} className="rounded-[12px] border border-border bg-surface p-6 hover:bg-surface-container-low transition-colors">
+              <div key={idx} className="group rounded-[16px] border border-outline-variant/60 bg-surface-container-low p-6 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[24px] hover:border-primary/40 hover:bg-surface-container-high hover:shadow-lg">
                 <span className="text-headline-md font-medium text-primary">{s.num}</span>
                 <p className="mt-2 text-body-md text-on-surface-variant leading-relaxed">{s.desc}</p>
               </div>
@@ -100,11 +100,11 @@ export default function LandingPage() {
           </section>
 
           {/* Detailed Problem Statement (Error Container style for urgency) */}
-          <section className="rounded-lg bg-error-container p-6 space-y-4">
-            <h3 className="text-title-lg font-medium text-on-error-container inline-flex items-center gap-2">
+          <section className="relative overflow-hidden rounded-[20px] border border-error/25 bg-surface-container-low p-7 pl-8 space-y-4 before:absolute before:inset-y-0 before:left-0 before:w-1.5 before:bg-error before:content-['']">
+            <h3 className="text-title-lg font-medium text-error inline-flex items-center gap-2">
               <AlertTriangle className="h-5 w-5" /> The Business Risk of Vendor Lock-In
             </h3>
-            <p className="text-body-lg text-on-error-container leading-relaxed">
+            <p className="text-body-lg text-on-surface-variant leading-relaxed">
               When you feed your company data into generic corporate assistants, you create a double write-off. If a partner leaves, their reasoning evaporates. If you switch AI vendors, you lose the entire context the assistant built. 
               <br /><br />
               Heirloom implements a neutral, portable memory schema. <strong>Satya Nadella</strong> has highlighted this exact challenge, urging enterprises to build systems that retain institutional knowledge while remaining free to swap underlying models (<a href="https://www.edtechinnovationhub.com/news/microsoft-ceo-satya-nadella-says-companies-must-own-the-ai-learning-loops-shaping-their-future" target="_blank" rel="noreferrer" className="underline font-medium">Nadella on Learning Loops</a>).
@@ -127,21 +127,21 @@ export default function LandingPage() {
           <section className="space-y-6 pt-8 border-t border-border">
             <h2 className="text-headline-lg font-normal text-on-surface">Core Architecture</h2>
             <div className="grid gap-6 sm:grid-cols-3">
-              <div className="rounded-[16px] bg-surface-container p-6 space-y-4">
+              <div className="rounded-[16px] bg-surface-container p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[28px] hover:bg-surface-container-high">
                 <Database className="h-8 w-8 text-primary" />
                 <h4 className="text-title-lg font-medium text-on-surface">1. Access Guard</h4>
                 <p className="text-body-md text-on-surface-variant leading-relaxed">
                   Cryptographically scopes and verifies credentials before query evaluation. Role filters run at the query-token level, never surfacing unauthorized indices.
                 </p>
               </div>
-              <div className="rounded-[16px] bg-surface-container p-6 space-y-4">
+              <div className="rounded-[16px] bg-surface-container p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[28px] hover:bg-surface-container-high">
                 <Shield className="h-8 w-8 text-primary" />
                 <h4 className="text-title-lg font-medium text-on-surface">2. Provenance Chain</h4>
                 <p className="text-body-md text-on-surface-variant leading-relaxed">
                   Attaches signed metadata certificates to every document node. Any response served by the model displays direct links to original meeting transcripts or files.
                 </p>
               </div>
-              <div className="rounded-[16px] bg-surface-container p-6 space-y-4">
+              <div className="rounded-[16px] bg-surface-container p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[28px] hover:bg-surface-container-high">
                 <Briefcase className="h-8 w-8 text-primary" />
                 <h4 className="text-title-lg font-medium text-on-surface">3. Open Portability</h4>
                 <p className="text-body-md text-on-surface-variant leading-relaxed">
@@ -153,7 +153,7 @@ export default function LandingPage() {
 
           {/* Business Model (Filled Cards) */}
           <section className="grid gap-6 md:grid-cols-2 pt-8 border-t border-border">
-            <div className="rounded-[16px] bg-surface-container-low p-6 space-y-4">
+            <div className="rounded-[16px] bg-surface-container-low p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[28px] hover:bg-surface-container">
               <h3 className="text-headline-md font-normal text-on-surface">Why Enterprises Buy</h3>
               <ul className="space-y-4 text-body-md text-on-surface-variant">
                 <li className="flex items-start gap-3">
@@ -171,7 +171,7 @@ export default function LandingPage() {
               </ul>
             </div>
 
-            <div className="rounded-[16px] bg-surface-container-low p-6 space-y-4">
+            <div className="rounded-[16px] bg-surface-container-low p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[28px] hover:bg-surface-container">
               <h3 className="text-headline-md font-normal text-on-surface">Revenue & Wedge</h3>
               <p className="text-body-md text-on-surface-variant leading-relaxed">
                 Per-seat subscription models combined with ingestion migration services. Our primary wedge focuses on high-turnover consulting firms, legal agencies, and professional services where knowledge is inventory and attrition is a direct write-off.

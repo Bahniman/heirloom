@@ -38,7 +38,7 @@ export default function LandingPage() {
                 href="https://bahniman.github.io"
                 className="text-xs sm:text-sm font-medium hover:text-primary transition-colors whitespace-nowrap"
               >
-                <span className="hidden sm:inline">← Back to Portal</span>
+                <span className="hidden sm:inline">← Back to portfolio</span>
                 <span className="sm:hidden">← Portal</span>
               </a>
               <a
@@ -100,7 +100,7 @@ export default function LandingPage() {
           </section>
 
           {/* Detailed Problem Statement (Error Container style for urgency) */}
-          <section className="relative overflow-hidden rounded-[20px] border border-error/25 bg-surface-container-low p-7 pl-8 space-y-4 before:absolute before:inset-y-0 before:left-0 before:w-1.5 before:bg-error before:content-['']">
+          <section className="relative overflow-hidden border border-outline-variant bg-surface-container-low p-7 space-y-4">
             <h3 className="text-title-lg font-medium text-error inline-flex items-center gap-2">
               <AlertTriangle className="h-5 w-5" /> The Business Risk of Vendor Lock-In
             </h3>

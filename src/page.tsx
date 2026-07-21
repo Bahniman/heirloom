@@ -61,7 +61,7 @@ export default function LandingPage() {
           
           {/* M3 Hero Section */}
           <section className="space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 rounded-lg border border-primary/25 bg-primary-container/40 px-4 py-2 text-label-lg font-medium text-primary transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:rounded-full">
+            <div className="inline-flex items-center gap-2 rounded-lg border border-primary/25 bg-primary-container/40 px-4 py-2 text-label-lg font-medium text-primary transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)]">
               <Award className="h-4 w-4" /> Startup Lab · Knowledge Asset Protection
             </div>
             <h1 className="text-[42px] leading-[48px] md:text-[60px] md:leading-[66px] font-medium tracking-[-1.2px] text-on-surface">
@@ -92,7 +92,7 @@ export default function LandingPage() {
           {/* M3 Stats Bar (Outlined Cards) */}
           <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s, idx) => (
-              <div key={idx} className="group rounded-[16px] border border-outline-variant/60 bg-surface-container-low p-6 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[24px] hover:border-primary/40 hover:bg-surface-container-high hover:shadow-lg">
+              <div key={idx} className="group rounded-[16px] border border-outline-variant/60 bg-surface-container-low p-6 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:border-primary/40 hover:bg-surface-container-high hover:shadow-lg">
                 <span className="text-headline-md font-medium text-primary">{s.num}</span>
                 <p className="mt-2 text-body-md text-on-surface-variant leading-relaxed">{s.desc}</p>
               </div>
@@ -127,21 +127,21 @@ export default function LandingPage() {
           <section className="space-y-6 pt-8 border-t border-border">
             <h2 className="text-headline-lg font-normal text-on-surface">Core Architecture</h2>
             <div className="grid gap-6 sm:grid-cols-3">
-              <div className="rounded-[16px] bg-surface-container p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[28px] hover:bg-surface-container-high">
+              <div className="rounded-[16px] bg-surface-container p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:bg-surface-container-high">
                 <Database className="h-8 w-8 text-primary" />
                 <h4 className="text-title-lg font-medium text-on-surface">1. Access Guard</h4>
                 <p className="text-body-md text-on-surface-variant leading-relaxed">
                   Cryptographically scopes and verifies credentials before query evaluation. Role filters run at the query-token level, never surfacing unauthorized indices.
                 </p>
               </div>
-              <div className="rounded-[16px] bg-surface-container p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[28px] hover:bg-surface-container-high">
+              <div className="rounded-[16px] bg-surface-container p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:bg-surface-container-high">
                 <Shield className="h-8 w-8 text-primary" />
                 <h4 className="text-title-lg font-medium text-on-surface">2. Provenance Chain</h4>
                 <p className="text-body-md text-on-surface-variant leading-relaxed">
                   Attaches signed metadata certificates to every document node. Any response served by the model displays direct links to original meeting transcripts or files.
                 </p>
               </div>
-              <div className="rounded-[16px] bg-surface-container p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[28px] hover:bg-surface-container-high">
+              <div className="rounded-[16px] bg-surface-container p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:bg-surface-container-high">
                 <Briefcase className="h-8 w-8 text-primary" />
                 <h4 className="text-title-lg font-medium text-on-surface">3. Open Portability</h4>
                 <p className="text-body-md text-on-surface-variant leading-relaxed">
@@ -153,7 +153,7 @@ export default function LandingPage() {
 
           {/* Business Model (Filled Cards) */}
           <section className="grid gap-6 md:grid-cols-2 pt-8 border-t border-border">
-            <div className="rounded-[16px] bg-surface-container-low p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[28px] hover:bg-surface-container">
+            <div className="rounded-[16px] bg-surface-container-low p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:bg-surface-container">
               <h3 className="text-headline-md font-normal text-on-surface">Why Enterprises Buy</h3>
               <ul className="space-y-4 text-body-md text-on-surface-variant">
                 <li className="flex items-start gap-3">
@@ -171,7 +171,7 @@ export default function LandingPage() {
               </ul>
             </div>
 
-            <div className="rounded-[16px] bg-surface-container-low p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:rounded-[28px] hover:bg-surface-container">
+            <div className="rounded-[16px] bg-surface-container-low p-6 space-y-4 transition-all duration-500 ease-[cubic-bezier(0.34,1.42,0.64,1)] hover:-translate-y-1 hover:bg-surface-container">
               <h3 className="text-headline-md font-normal text-on-surface">Revenue & Wedge</h3>
               <p className="text-body-md text-on-surface-variant leading-relaxed">
                 Per-seat subscription models combined with ingestion migration services. Our primary wedge focuses on high-turnover consulting firms, legal agencies, and professional services where knowledge is inventory and attrition is a direct write-off.

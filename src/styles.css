@@ -285,3 +285,94 @@ hr { border: 0; height: 1px; background: var(--md-sys-color-outline-variant); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* ==================================================================
+   Portfolio layout components — identical markup to bahniman.github.io
+   App tokens are aliased so the same classes work here.
+   ================================================================== */
+:root, .dark {
+  --paper: var(--md-sys-color-surface);
+  --surface: var(--md-sys-color-surface-container-lowest);
+  --ink: var(--md-sys-color-on-surface);
+  --ink-2: var(--md-sys-color-on-surface-variant);
+  --ink-3: var(--md-sys-color-outline);
+  --rule: var(--md-sys-color-outline-variant);
+  --rule-strong: var(--md-sys-color-outline);
+  --mark: var(--md-sys-color-primary);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --measure: 66ch;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --shell: 1280px;
+}
+
+.shell { max-width: var(--shell); margin: 0 auto; padding-inline: var(--gutter); }
+.band { border-top: 1px solid var(--rule); }
+.section { padding-block: clamp(3.5rem, 8vw, 7rem); }
+.hero-grid > *, .row > *, .foot-grid > *, .section-head > *, .meta > * { min-width: 0; }
+
+.display {
+  font-size: clamp(2.6rem, 7.4vw, 5.25rem); line-height: 0.94; font-weight: 800;
+  font-variation-settings: "wdth" 112; letter-spacing: -0.035em; text-wrap: balance;
+}
+.h2 {
+  font-size: clamp(1.6rem, 3.4vw, 2.5rem); line-height: 1.05; font-weight: 700;
+  font-variation-settings: "wdth" 108; letter-spacing: -0.025em; text-wrap: balance;
+}
+.lede {
+  font-size: clamp(1.0625rem, 1.7vw, 1.3rem); line-height: 1.55;
+  color: var(--ink-2); max-width: 54ch; text-wrap: pretty;
+}
+.prose { max-width: var(--measure); text-wrap: pretty; color: var(--ink-2); line-height: 1.65; }
+.prose strong { color: var(--ink); font-weight: 700; }
+.mono {
+  font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); grid-template-columns: minmax(0,1fr); align-items: start; }
+@media (min-width: 1000px) { .hero-grid { grid-template-columns: minmax(0,1.45fr) minmax(0,0.55fr); gap: clamp(3rem,6vw,6rem); } }
+
+.meta { border-top: 1px solid var(--ink); }
+.meta > div { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--rule); }
+.meta dt { font-family: var(--font-mono); font-size: 0.625rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); padding-top: 0.2rem; }
+.meta dd { font-size: 0.9375rem; line-height: 1.45; color: var(--ink); }
+
+.section-head { display: grid; grid-template-columns: minmax(0,1fr); gap: 0.75rem; padding-bottom: 1.75rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--rule); }
+@media (min-width: 900px) { .section-head { grid-template-columns: 8rem minmax(0,1fr) minmax(0,18rem); align-items: end; gap: 2rem; } }
+.section-head .idx { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; color: var(--mark); letter-spacing: 0.06em; }
+.section-head .note { color: var(--ink-3); font-size: 0.9375rem; }
+
+.statement { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); padding-block: clamp(3rem, 7vw, 5rem); }
+.statement .line { font-size: clamp(1.5rem, 3.6vw, 2.6rem); line-height: 1.12; font-weight: 700; font-variation-settings: "wdth" 108; letter-spacing: -0.025em; max-width: 26ch; text-wrap: balance; }
+.statement .by { margin-top: 1.4rem; font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; max-width: 54ch; line-height: 1.7; }
+
+.rows { border-top: 1px solid var(--rule); }
+.row {
+  display: grid; grid-template-columns: minmax(0,1fr); gap: 1rem;
+  padding: clamp(1.5rem,3vw,2.25rem) clamp(0.75rem,1.5vw,1.25rem);
+  margin-inline: clamp(-1.25rem,-1.5vw,-0.75rem);
+  border-bottom: 1px solid var(--rule); transition: background-color .25s var(--ease);
+}
+@media (min-width: 900px) { .row { grid-template-columns: 4.5rem minmax(0,1.05fr) minmax(0,1.35fr); gap: 2rem; align-items: start; } }
+.row:hover { background: color-mix(in srgb, var(--ink) 3%, transparent); }
+.row .num { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-3); padding-top: 0.3rem; }
+.row .title { font-size: clamp(1.2rem,2.1vw,1.5rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; }
+.row .role { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mark); margin-top: 0.5rem; }
+.row .desc { color: var(--ink-2); font-size: 0.9688rem; line-height: 1.6; }
+
+.table-wrap { width: 100%; min-width: 0; max-width: 100%; overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; min-width: 34rem; }
+.table th { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); text-align: left; padding: 0 1rem 0.75rem 0; border-bottom: 1px solid var(--rule); }
+.table td { padding: 1rem 1rem 1rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; font-size: 0.9375rem; }
+.table td.n, .table th.n { text-align: right; padding-right: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.875rem; }
+.table tr:last-child td { border-bottom: 0; }
+.table .sub { color: var(--ink-3); font-size: 0.8125rem; display: block; margin-top: 0.2rem; }
+
+.lnk { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.9375rem; border-bottom: 1px solid var(--rule-strong); padding-bottom: 2px; transition: border-color .2s var(--ease), color .2s var(--ease), gap .3s var(--ease); }
+.lnk:hover { border-bottom-color: var(--mark); color: var(--mark); gap: 0.8rem; }
+
+.src { counter-reset: s; display: grid; gap: 0.85rem; }
+.src li { font-size: 0.875rem; color: var(--ink-2); line-height: 1.55; }
+.src li a { border-bottom: 1px solid var(--rule-strong); }
+.src li a:hover { border-bottom-color: var(--mark); color: var(--mark); }

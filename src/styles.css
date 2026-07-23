@@ -376,3 +376,82 @@ hr { border: 0; height: 1px; background: var(--md-sys-color-outline-variant); }
 .src li { font-size: 0.875rem; color: var(--ink-2); line-height: 1.55; }
 .src li a { border-bottom: 1px solid var(--rule-strong); }
 .src li a:hover { border-bottom-color: var(--mark); color: var(--mark); }
+
+/* ===== DOMAIN SKIN ===== */
+
+:root, .dark {
+  --md-sys-color-surface: #14120B;
+  --md-sys-color-on-surface: #EDE6D4;
+  --md-sys-color-on-surface-variant: #A79C82;
+  --md-sys-color-outline: #6B6047;
+  --md-sys-color-outline-variant: #2C2719;
+  --md-sys-color-surface-container-lowest: #0E0C07;
+  --md-sys-color-surface-container-low: #1A1710;
+  --md-sys-color-surface-container: #1F1B12;
+  --md-sys-color-surface-container-high: #262117;
+  --md-sys-color-surface-container-highest: #2E281C;
+  --md-sys-color-primary: #D8C15A;
+  --md-sys-color-on-primary: #14120B;
+  --md-sys-color-primary-container: #3A3212;
+  --md-sys-color-on-primary-container: #F0E4A8;
+  --font-sans: "Literata", Georgia, serif;
+  --font-mono: "Courier Prime", ui-monospace, monospace;
+}
+html { color-scheme: dark; }
+body { font-family: var(--font-sans); font-size: 16px; line-height: 1.68; font-variation-settings: normal; }
+
+.display, .h2, h3, .row .title {
+  font-family: var(--font-sans) !important;
+  font-variation-settings: normal !important;
+  font-weight: 700 !important;
+}
+.display { letter-spacing: -0.02em !important; line-height: 1.02 !important; font-size: clamp(2.2rem, 5.6vw, 4rem) !important; }
+.h2 { letter-spacing: -0.01em !important; }
+.lede, .prose, .row .desc { font-family: var(--font-sans); }
+
+/* everything administrative is typewritten */
+.mono, .meta dt, .section-head .idx, .row .role, .row .num, .table th, .table td.n, .src li {
+  font-family: var(--font-mono) !important;
+}
+.section-head .idx { text-transform: uppercase; letter-spacing: 0.1em; }
+.section-head { border-bottom: 1px solid var(--md-sys-color-outline); }
+
+/* rows are catalogue cards */
+.rows { border-top: 0; }
+.row {
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-left: 1px solid var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container-low);
+  margin-bottom: 0.75rem;
+  padding: clamp(1.25rem, 2.6vw, 1.75rem) !important;
+  margin-inline: 0 !important;
+}
+.row:hover { background: var(--md-sys-color-surface-container); border-color: var(--md-sys-color-outline); }
+.row .num { color: var(--md-sys-color-primary); }
+.row .role { text-transform: uppercase; letter-spacing: 0.09em; }
+
+/* the index card header rule */
+.meta { border-top: 1px solid var(--md-sys-color-primary); }
+.meta > div { border-bottom: 1px solid var(--md-sys-color-outline-variant); }
+.table th { border-bottom: 1px solid var(--md-sys-color-primary); text-transform: uppercase; letter-spacing: 0.08em; }
+
+.statement { background: var(--md-sys-color-primary) !important; color: #14120B !important; }
+.statement .line { font-family: var(--font-sans) !important; font-weight: 700 !important; letter-spacing: -0.015em !important; }
+.statement .by { color: #14120B !important; font-family: var(--font-mono) !important; opacity: 0.8; }
+header { background: #14120B !important; border-bottom: 1px solid var(--md-sys-color-outline-variant) !important; backdrop-filter: none !important; }
+* { border-radius: 0 !important; }
+
+/* --- skin fixes --- */
+
+.font-sans { font-family: "Literata", Georgia, serif !important; }
+.font-mono { font-family: "Courier Prime", ui-monospace, monospace !important; }
+
+a[class*="rounded"][class*="bg-primary"],
+button[class*="rounded"][class*="bg-primary"] {
+  background: var(--md-sys-color-primary) !important;
+  color: #14120B !important;
+  font-family: "Courier Prime", monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { GlowCard } from "./glow-card";
-import { 
-  User, Shield, Key, Send, RefreshCw, AlertCircle, CheckCircle, 
+import {
+  User, Shield, Key, Send, RefreshCw, AlertCircle, CheckCircle,
   FileText, Folder, Lock, Unlock, Download, FileCode, CheckSquare, XSquare, Search, AlertTriangle
 } from "lucide-react";
 
@@ -14,106 +14,112 @@ interface MemoryItem {
   src: string;
   creator: string;
   date: string;
-  sig: string;
+  sig?: string;
   supersedable?: boolean;
 }
 
+interface ExportRecord {
+  schema: string;
+  id: string;
+  classification: string;
+  timestamp: string;
+  author: string;
+  content: string;
+  signature_status: string;
+  record_status: string;
+  superseded_by?: string;
+  supersedes?: string;
+  policy: { min_role_level: number };
+}
+
 const MEMORIES: MemoryItem[] = [
-  { 
+  {
     id: "MEM-001",
-    min: 0, 
-    k: "decision", 
-    title: "Platform Choice - Snowflake",
-    text: "We standardized on Snowflake over Databricks for client data-stack builds.", 
-    src: "steering committee minutes, 12 Mar 2025", 
-    creator: "S. Rao (Lead Architect)",
+    min: 0,
+    k: "decision",
+    title: "Platform Choice - Northstar Data",
+    text: "The sample team selected Northstar Data over Harbor Analytics for a client data-stack build.",
+    src: "steering committee minutes, 12 Mar 2025",
+    creator: "Sample lead architect",
     date: "12 Mar 2025",
-    sig: "ed25519:sig:9a8b7c6d5e4f3a2b1c",
   },
-  { 
+  {
     id: "MEM-002",
-    min: 1, 
-    k: "rationale", 
-    title: "Snowflake Pricing Driver",
-    text: "The real driver: Databricks' pricing tripled at renewal mid-engagement at Client K in 2024 — we couldn't carry that risk into fixed-fee builds. Databricks actually scored higher in technical benchmark tests.", 
-    src: "partner sync notes, 12 Mar 2025", 
-    creator: "A. Patel (Managing Director)",
+    min: 1,
+    k: "rationale",
+    title: "Harbor Analytics Pricing Assumption",
+    text: "For this fictional example, the team preferred Northstar Data because it expected more predictable costs on a fixed-fee build. Harbor Analytics scored higher in the sample technical benchmark.",
+    src: "partner sync notes, 12 Mar 2025",
+    creator: "Sample managing director",
     date: "12 Mar 2025",
-    sig: "ed25519:sig:8a7b6c5d4e3f2a1b0c"
   },
-  { 
+  {
     id: "MEM-003",
-    min: 2, 
-    k: "commercial", 
-    title: "Snowflake MSA Partner Discount",
-    text: "Snowflake gave us a 40% partner discount locked to 2027 in exchange for a public case study. Do not price client work off the list rate.", 
-    src: "MSA appendix C — finance", 
-    creator: "M. Kapoor (Global CFO)",
+    min: 2,
+    k: "commercial",
+    title: "Northstar Data Partner Pricing",
+    text: "Fictional sample assumption: a partner discount applies through the example contract term. Check the agreement before using list pricing.",
+    src: "sample partner terms — finance",
+    creator: "Sample partner",
     date: "10 Feb 2025",
-    sig: "ed25519:sig:7a6b5c4d3e2f1a0b9c"
   },
-  { 
+  {
     id: "MEM-004",
-    min: 0, 
-    k: "status", 
-    title: "Client K Migration Blockers",
-    text: "Client K data migration is running two weeks behind; the blocker is their security review of the ingestion pipeline.", 
-    src: "delivery standup, 02 Jun 2025", 
-    creator: "K. Shah (PM-bot)",
+    min: 0,
+    k: "status",
+    title: "Sample Client A Migration Status",
+    text: "The fictional Sample Client A data migration is running two weeks behind while the ingestion pipeline undergoes security review.",
+    src: "delivery standup, 02 Jun 2025",
+    creator: "Sample PM-bot",
     date: "02 Jun 2025",
-    sig: "ed25519:sig:6a5b4c3d2e1f0a9b8c",
     supersedable: true
   },
-  { 
+  {
     id: "MEM-005",
-    min: 1, 
-    k: "postmortem", 
-    title: "Vertex Bid Postmortem",
-    text: "We lost the Vertex FY25 pitch because we led with the rate card instead of outcomes. Their CPO said as much in the debrief. Lead with the outcome memo.", 
-    src: "pitch postmortem, 18 Jan 2025", 
-    creator: "A. Menon (Partner)",
+    min: 1,
+    k: "postmortem",
+    title: "Sample Client B Bid Review",
+    text: "In this fictional example, the team plans to lead the next proposal with outcomes and supporting numbers before discussing rates.",
+    src: "pitch postmortem, 18 Jan 2025",
+    creator: "Sample partner",
     date: "18 Jan 2025",
-    sig: "ed25519:sig:5a4b3c2d1e0f9a8b7c"
   },
-  { 
+  {
     id: "MEM-006",
-    min: 0, 
-    k: "client note", 
-    title: "CFO Engagement Preferences",
-    text: "Client K's CFO reads one-page memos only — she has said twice that she 'doesn't do decks'. Bring a single A4, numbers first.", 
-    src: "account notes — R. Iyer", 
-    creator: "R. Iyer (Account Director)",
+    min: 0,
+    k: "client note",
+    title: "Sample CFO Engagement Preferences",
+    text: "The sample CFO prefers a concise, numbers-first memo. Prepare a one-page summary for review.",
+    src: "fictional account notes",
+    creator: "Sample account director",
     date: "14 Apr 2025",
-    sig: "ed25519:sig:4a3b2c1d0e9f8a7b6c"
   },
-  { 
+  {
     id: "MEM-007",
-    min: 0, 
-    k: "compliance", 
-    title: "Client K NDA Subcontracting",
-    text: "Client K NDA clause 7.3: nothing from their data room may be shared with subcontractors without written consent.", 
-    src: "NDA register", 
-    creator: "G. Sen (Legal Counsel)",
+    min: 0,
+    k: "compliance",
+    title: "Sample Client A Subcontracting Terms",
+    text: "Fictional sample policy: material from Sample Client A's data room requires written approval before it is shared with subcontractors.",
+    src: "NDA register",
+    creator: "Sample legal counsel",
     date: "05 Jan 2025",
-    sig: "ed25519:sig:3a2b1c0d9e8f7a6b5c"
   },
-  { 
+  {
     id: "MEM-008",
-    min: 1, 
-    k: "pricing policy", 
+    min: 1,
+    k: "pricing policy",
     title: "Discount Ceiling Thresholds",
-    text: "Standard discount ceiling is 12% without partner sign-off; anything above requires a margin memo.", 
-    src: "pricing policy v4, Sec 2.1", 
-    creator: "F. Ahmed (Partner)",
+    text: "Standard discount ceiling is 12% without partner sign-off; anything above requires a margin memo.",
+    src: "pricing policy v4, Sec 2.1",
+    creator: "Sample partner",
     date: "01 Dec 2024",
-    sig: "ed25519:sig:2a1b0c9d8e7f6a5b4c"
   },
 ];
 
 const QUERIES = [
-  { q: "Why did we pick Snowflake for the client data stack?", hits: ["MEM-001", "MEM-002", "MEM-003"] },
-  { q: "Prepping for Client K's CFO tomorrow — what should I know?", hits: ["MEM-006", "MEM-004", "MEM-007"] },
-  { q: "Can I offer 15% off to close the Vertex renewal?", hits: ["MEM-008", "MEM-005"] },
+  { q: "Why did we pick Northstar Data for the sample client data stack?", hits: ["MEM-001", "MEM-002", "MEM-003"] },
+  { q: "Preparing for Sample Client A's CFO meeting — what should I know?", hits: ["MEM-006", "MEM-004", "MEM-007"] },
+  { q: "Can I offer 15% off to close Sample Client B?", hits: ["MEM-008", "MEM-005"] },
 ];
 
 const ROLE_NAMES = ["Analyst (New Hire)", "Engagement Manager", "Partner"];
@@ -128,15 +134,49 @@ export function RoleQuerySimulator() {
   const [corrected, setCorrected] = useState(false);
   const [resigned, setResigned] = useState(false);
   const [lastQueryIdx, setLastQueryIdx] = useState<number | null>(null);
-  
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const runId = useRef(0);
+  const pendingTimers = useRef(new Map<number, () => void>());
+  const [exportStatus, setExportStatus] = useState("");
+  const [resetStatus, setResetStatus] = useState("");
+
+  const chatLogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const log = chatLogRef.current;
+    if (log) log.scrollTo({ top: log.scrollHeight, behavior: reduceMotion ? "auto" : "smooth" });
   }, [messages, isTyping]);
+
+  useEffect(() => () => {
+    runId.current += 1;
+    cancelPendingTimers();
+  }, []);
+
+  const cancelPendingTimers = () => {
+    for (const [timer, resolve] of pendingTimers.current) {
+      window.clearTimeout(timer);
+      resolve();
+    }
+    pendingTimers.current.clear();
+  };
+
+  const pause = (ms: number) => {
+    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : ms;
+    return new Promise<void>(resolve => {
+      const timer = window.setTimeout(() => {
+        pendingTimers.current.delete(timer);
+        resolve();
+      }, duration);
+      pendingTimers.current.set(timer, resolve);
+    });
+  };
 
   const handleAsk = async (qi: number) => {
     if (isTyping) return;
+    const requestId = ++runId.current;
+    const requestRole = role;
+    const requestResigned = resigned;
+    const requestCorrected = corrected;
     setLastQueryIdx(qi);
     const query = QUERIES[qi]!;
 
@@ -147,26 +187,28 @@ export function RoleQuerySimulator() {
     setIsTyping(true);
 
     // 1. Policy verification
-    await new Promise((res) => setTimeout(res, 500));
+    await pause(500);
+    if (requestId !== runId.current) return;
     setMessages((prev) => [
       ...prev,
       {
         sender: "telemetry",
-        text: `[POLICY] Evaluating query tokens... Active Role: ${ROLE_NAMES[role]}`,
+        text: `[LOCAL SAMPLE] Applying the selected role filter: ${ROLE_NAMES[requestRole]}`,
         type: "info"
       }
     ]);
 
-    await new Promise((res) => setTimeout(res, 450));
-    
+    await pause(450);
+    if (requestId !== runId.current) return;
+
     // Evaluate hits based on role constraints & simulation modifiers
     const activeHits = query.hits.filter(id => {
       const item = MEMORIES.find(m => m.id === id)!;
       // Filter out partner-level records if partner is simulated as resigned (wipeout)
-      if (resigned && item.creator.includes("Partner")) return false;
+      if (requestResigned && item.creator.toLowerCase().includes("partner")) return false;
       // Filter out superseded status item if update has been simulated
-      if (corrected && item.id === "MEM-004") return false;
-      return item.min <= role;
+      if (requestCorrected && item.id === "MEM-004") return false;
+      return item.min <= requestRole;
     });
     const blockedCount = query.hits.length - activeHits.length;
 
@@ -174,88 +216,134 @@ export function RoleQuerySimulator() {
       ...prev,
       {
         sender: "telemetry",
-        text: `[DECRYPTION] Resolved ${activeHits.length} matching memory nodes. Pruned ${blockedCount} unauthorized/revoked records.`,
+        text: `[LOCAL FILTER] Matched ${activeHits.length} sample records. Excluded ${blockedCount} for this role or simulated departure.`,
         type: blockedCount > 0 ? "warn" : "success"
       }
     ]);
 
-    await new Promise((res) => setTimeout(res, 600));
-    setIsTyping(false);
+    await pause(600);
+    if (requestId !== runId.current) return;
 
     if (activeHits.length === 0) {
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "ACCESS PROHIBITED: Pre-retrieval scope checks blocked all indexing matching the query parameters.", subtext: "0 memory vectors evaluated" }
+        { sender: "bot", text: "No sample records matched the selected role and query.", subtext: "This local simulation does not retrieve vectors or enforce production access controls." }
       ]);
     } else {
-      activeHits.forEach(async (id, i) => {
-        await new Promise((res) => setTimeout(res, 300 * i));
+      for (let i = 0; i < activeHits.length; i += 1) {
+        await pause(300 * i);
+        if (requestId !== runId.current) return;
+        const id = activeHits[i]!;
         const item = MEMORIES.find(m => m.id === id)!;
         setMessages((prev) => [
           ...prev,
           {
             sender: "bot",
             text: `[${item.k.toUpperCase()}] ${item.text}`,
-            subtext: `📍 Signed Provenance: ${item.src} | Auth Hash: ${item.sig.slice(0, 16)}...`
+            subtext: `Sample source: ${item.src} | Example record: ${item.id}`
           }
         ]);
-      });
+      }
     }
 
-    // Append update if Client K is updated
-    if (corrected && qi === 1) {
-      await new Promise((res) => setTimeout(res, 900));
+    // Append a fictional corrected status record when that sample state is enabled.
+    if (requestCorrected && qi === 1) {
+      await pause(900);
+      if (requestId !== runId.current) return;
       setMessages((prev) => [
         ...prev,
         {
           sender: "bot",
-          text: `[STATUS (CORRECTED)] Client K data migration security review cleared on 20 Jun. Project is back on track.`,
-          subtext: `📍 Signed Provenance: delivery standup, 20 Jun 2025 — pm-bot`
+          text: `[STATUS (CORRECTED)] Sample Client A data migration security review cleared on 20 Jun.`,
+          subtext: `Fictional sample update: delivery standup, 20 Jun 2025 — pm-bot`
         }
       ]);
     }
+    if (requestId === runId.current) setIsTyping(false);
   };
 
   const getExportJSON = () => {
-    const records = MEMORIES.filter(m => !resigned || !m.creator.includes("Partner")).map(m => ({
-      schema: "open-memory/v1",
+    const records: ExportRecord[] = MEMORIES.filter(m => !resigned || !m.creator.toLowerCase().includes("partner")).map(m => ({
+      schema: "heirloom-sample/v1",
       id: m.id,
       classification: m.k,
       timestamp: m.date,
       author: m.creator,
       content: m.text,
-      signature: m.sig,
+      signature_status: "not-signed-example-only",
+      record_status: corrected && m.id === "MEM-004" ? "superseded" : "active",
+      ...(corrected && m.id === "MEM-004" ? { superseded_by: "MEM-004-CORRECTED" } : {}),
       policy: { min_role_level: m.min }
     }));
+    if (corrected) records.push({
+      schema: "heirloom-sample/v1",
+      id: "MEM-004-CORRECTED",
+      classification: "status",
+      timestamp: "20 Jun 2025",
+      author: "pm-bot",
+      content: "Sample status update: Sample Client A data migration security review cleared.",
+      signature_status: "not-signed-example-only",
+      record_status: "active",
+      supersedes: "MEM-004",
+      policy: { min_role_level: 0 }
+    });
     return JSON.stringify(records, null, 2);
   };
 
   const resetDemos = () => {
+    runId.current += 1;
+    cancelPendingTimers();
+    setRole(0);
+    setActiveTab("explorer");
+    setSelectedFile(MEMORIES[0]!);
     setMessages([]);
     setIsTyping(false);
     setLastQueryIdx(null);
     setCorrected(false);
     setResigned(false);
+    setExportStatus("");
+    setResetStatus("Sandbox reset to Analyst, Vault Explorer, and the first sample record.");
+  };
+
+  const copyExport = async () => {
+    try {
+      await navigator.clipboard.writeText(getExportJSON());
+      setExportStatus("Sample JSON copied.");
+    } catch {
+      setExportStatus("Clipboard access is unavailable. Download the JSON instead.");
+    }
+  };
+
+  const downloadExport = () => {
+    const blob = new Blob([getExportJSON()], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "heirloom-sample-open-memory.json";
+    link.click();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setExportStatus("Sample JSON downloaded.");
   };
 
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="flex flex-col gap-4 border-b border-border pb-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h3 className="font-sans text-lg font-bold text-foreground">Interactive Sandbox: Memory Vault</h3>
-          <p className="text-xs text-muted-foreground">Scope credentials and trigger lifecycle updates to see corporate RAG memory in action.</p>
+          <h3 className="font-sans text-lg font-bold text-foreground">Illustrative sandbox · fixed sample data</h3>
+          <p className="text-xs text-muted-foreground">The role filter runs locally. No assistant, identity provider, or customer system is connected.</p>
         </div>
-        <button
+        <button type="button"
           onClick={resetDemos}
           className="self-start flex h-8 items-center gap-1.5 rounded-lg border border-outline-variant bg-surface-container-low px-3 text-xs text-on-surface hover:bg-on-surface/8 hover:text-on-surface transition-colors"
         >
           <RefreshCw className="h-3.5 w-3.5" /> Reset Sandbox
         </button>
       </div>
+      <p className="-mt-4 min-h-5 text-xs text-muted-foreground" role="status" aria-live="polite">{resetStatus}</p>
 
       {/* Role Scoper Selector */}
       <div className="space-y-2">
-        <span className="font-mono text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Select Credentials Clearance:</span>
+        <span className="font-mono text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Choose a sample role:</span>
         <div className="grid grid-cols-3 gap-2">
           {ROLE_NAMES.map((name, idx) => {
             const Icon = ROLE_ICONS[idx]!;
@@ -263,7 +351,10 @@ export function RoleQuerySimulator() {
             return (
               <button
                 key={idx}
+                type="button"
                 onClick={() => setRole(idx)}
+                aria-pressed={isSelected}
+                disabled={isTyping}
                 className={`flex flex-col items-center justify-center gap-1.5 rounded-lg border p-3 text-center transition-all ${
                   isSelected
                     ? "border-primary bg-primary-container text-on-primary-container font-semibold"
@@ -283,7 +374,9 @@ export function RoleQuerySimulator() {
         {(["explorer", "query", "lifecycle"] as const).map((t) => (
           <button
             key={t}
+            type="button"
             onClick={() => setActiveTab(t)}
+            aria-pressed={activeTab === t}
             className={`border-b-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
               activeTab === t
                 ? "border-primary text-primary"
@@ -305,17 +398,19 @@ export function RoleQuerySimulator() {
               <div className="space-y-1.5 max-h-[320px] overflow-y-auto">
                 {MEMORIES.map((m) => {
                   const isLocked = m.min > role;
-                  const isResignedPartner = resigned && m.creator.includes("Partner");
+                  const isResignedPartner = resigned && m.creator.toLowerCase().includes("partner");
                   const isSuperseded = corrected && m.id === "MEM-004";
-                  
+
                   return (
                     <button
                       key={m.id}
+                      type="button"
                       onClick={() => !isResignedPartner && setSelectedFile(m)}
                       disabled={isResignedPartner}
+                      aria-pressed={selectedFile?.id === m.id}
                       className={`w-full text-left p-2.5 rounded-lg border flex items-center justify-between text-xs transition-colors ${
-                        isResignedPartner 
-                          ? "opacity-35 cursor-not-allowed border-dashed bg-surface-container" 
+                        isResignedPartner
+                          ? "opacity-35 cursor-not-allowed border-dashed bg-surface-container"
                           : selectedFile?.id === m.id
                           ? "border-primary bg-primary-container text-on-primary-container font-semibold"
                           : "border-outline-variant hover:bg-on-surface/8 text-on-surface-variant hover:text-on-surface"
@@ -326,7 +421,7 @@ export function RoleQuerySimulator() {
                         <span className="truncate">{m.title}</span>
                       </span>
                       {isResignedPartner ? (
-                        <span className="font-mono text-[8px] border border-error/30 text-error bg-error/5 px-1 rounded">REVOKED</span>
+                        <span className="font-mono text-[8px] border border-error/30 text-error bg-error/5 px-1 rounded">HIDDEN IN SAMPLE</span>
                       ) : isSuperseded ? (
                         <span className="font-mono text-[8px] border border-warning/30 text-warning bg-warning/5 px-1 rounded">SUPERSEDED</span>
                       ) : isLocked ? (
@@ -350,13 +445,13 @@ export function RoleQuerySimulator() {
               {selectedFile ? (() => {
                 const isLocked = selectedFile.min > role;
                 const isSuperseded = corrected && selectedFile.id === "MEM-004";
-                
+
                 return (
                   <div className="h-full flex flex-col font-mono text-xs text-muted-foreground space-y-3.5">
                     <div className="border-b border-border/40 pb-3 flex items-center justify-between">
                       <span className="font-bold text-foreground truncate">{selectedFile.id} // {selectedFile.title.toUpperCase()}</span>
                       <span className="text-[9px] uppercase border border-border/80 px-2 py-0.5 rounded font-bold">
-                        Clearance: Lvl {selectedFile.min}
+                    Example role minimum: {selectedFile.min}
                       </span>
                     </div>
 
@@ -375,15 +470,15 @@ export function RoleQuerySimulator() {
                       {isLocked ? (
                         <div className="text-center space-y-2 p-4 animate-pulse">
                           <Lock className="h-8 w-8 mx-auto text-error" />
-                          <p className="font-bold text-error">DECRYPTION FAILURE [UNAUTHORIZED]</p>
-                          <p className="text-[10px] text-on-surface-variant max-w-sm">Requires role level &gt;= {selectedFile.min}. Pre-scoring vector clearance returned null.</p>
+                          <p className="font-bold text-error">Sample record outside this role</p>
+                          <p className="text-[10px] text-on-surface-variant max-w-sm">The local demonstration hides this record because it requires role level {selectedFile.min}.</p>
                         </div>
                       ) : (
                         <div className="w-full h-full font-sans text-on-surface text-sm leading-relaxed self-start">
                           {isSuperseded && (
                             <div className="mb-3 border border-transparent bg-error-container text-on-error-container rounded p-2 text-xs flex items-center gap-2 font-mono">
                               <AlertTriangle className="h-4 w-4 shrink-0" />
-                              <span>SUPERSEDED BY UPDATE MEM-004B (ACTIVE RUN)</span>
+                              <span>SUPERSEDED BY UPDATE MEM-004-CORRECTED (ACTIVE SAMPLE)</span>
                             </div>
                           )}
                           <p>{selectedFile.text}</p>
@@ -395,8 +490,8 @@ export function RoleQuerySimulator() {
                     </div>
 
                     <div className="text-[10px] flex flex-col gap-1 text-on-surface-variant border-t border-outline-variant/40 pt-3">
-                      <span>KEY_SIG: {isLocked ? "REVOKED_DECRYPT_KEY_INVALID" : selectedFile.sig}</span>
-                      <span>CIPHER: {isLocked ? "AES_256_GCM_ENCRYPTED_LOCKED" : "PLAIN_TEXT_SCOPED_DECRYPTED"}</span>
+                      <span>RECORD: {selectedFile.id} · SAMPLE ONLY</span>
+                      <span>ROLE MINIMUM: {selectedFile.min}</span>
                     </div>
                   </div>
                 );
@@ -412,8 +507,8 @@ export function RoleQuerySimulator() {
         {activeTab === "query" && (
           <div className="space-y-4">
             {/* Console */}
-            <div className="flex h-[280px] flex-col rounded-2xl border border-outline-variant bg-surface-container-low p-4 font-mono text-xs md:text-sm text-on-surface">
-              <div className="flex-grow overflow-y-auto space-y-3.5 pr-1 scrollbar-thin">
+            <div aria-live="polite" aria-relevant="additions text" aria-busy={isTyping} className="flex h-[280px] flex-col rounded-2xl border border-outline-variant bg-surface-container-low p-4 font-mono text-xs md:text-sm text-on-surface">
+              <div ref={chatLogRef} className="flex-grow overflow-y-auto space-y-3.5 pr-1 scrollbar-thin">
                 {messages.length === 0 && (
                   <div className="flex h-full flex-col items-center justify-center text-center text-on-surface-variant font-sans">
                     <Send className="h-8 w-8 mb-2 opacity-40 animate-pulse text-primary" />
@@ -470,7 +565,6 @@ export function RoleQuerySimulator() {
                     </div>
                   </div>
                 )}
-                <div ref={chatEndRef} />
               </div>
             </div>
 
@@ -479,7 +573,7 @@ export function RoleQuerySimulator() {
               <span className="font-mono text-[9px] uppercase font-bold text-muted-foreground tracking-wider">Queries in Queue:</span>
               <div className="flex flex-wrap gap-2">
                 {QUERIES.map((q, idx) => (
-                  <button
+                  <button type="button"
                     key={idx}
                     onClick={() => handleAsk(idx)}
                     disabled={isTyping}
@@ -502,7 +596,7 @@ export function RoleQuerySimulator() {
             {/* Event Triggers */}
             <div className="space-y-4">
               <span className="font-mono text-[9px] uppercase font-bold text-muted-foreground tracking-wider block border-b border-border pb-1.5">Simulation Events</span>
-              
+
               <div className="space-y-3">
                 {/* Event 1 */}
                 <div className="border border-border rounded-xl p-4 bg-foreground/[0.02] space-y-3">
@@ -513,17 +607,22 @@ export function RoleQuerySimulator() {
                     </span>
                   </div>
                   <p className="text-muted-foreground text-[11px] font-sans leading-normal">
-                    Simulates a partner leaving the firm. This revokes their Ed25519 signing keys, instantly removing documents created by them (e.g. A. Menon) from query results.
+                    In this sample scenario, records attributed to the partner stop appearing in local results. This does not change account access or revoke credentials.
                   </p>
-                  <button
-                    onClick={() => setResigned(!resigned)}
+                  <button type="button"
+                    onClick={() => {
+                      setResigned(!resigned);
+                      if (!resigned && selectedFile?.creator.toLowerCase().includes("partner")) setSelectedFile(MEMORIES[0]);
+                    }}
+                    aria-pressed={resigned}
+                    disabled={isTyping}
                     className={`w-full p-2.5 rounded-lg border font-bold transition-colors ${
                       resigned
                         ? "border-transparent bg-error-container text-on-error-container"
                         : "border-outline bg-primary text-on-primary hover:bg-primary/90 active:bg-primary/80"
                     }`}
                   >
-                    {resigned ? "Restore Partner Keys" : "Simulate Key Revocation"}
+                    {resigned ? "Restore Sample Records" : "Simulate Departure"}
                   </button>
                 </div>
 
@@ -536,10 +635,12 @@ export function RoleQuerySimulator() {
                     </span>
                   </div>
                   <p className="text-on-surface-variant text-[11px] font-sans leading-normal">
-                    Adds a new corrected record (Client K migration review cleared) that supersedes the outdated delay fact in searches.
+                    Switches the fixed sample search from an outdated delay note to a newer corrected record.
                   </p>
-                  <button
+                  <button type="button"
                     onClick={() => setCorrected(!corrected)}
+                    aria-pressed={corrected}
+                    disabled={isTyping}
                     className={`w-full p-2.5 rounded-lg border font-bold transition-colors ${
                       corrected
                         ? "border-transparent bg-tertiary-container text-on-tertiary-container"
@@ -557,24 +658,27 @@ export function RoleQuerySimulator() {
               <div className="flex items-center justify-between border-b border-outline-variant pb-3 mb-3">
                 <span className="font-bold text-foreground">3. OPEN MEMORY EXPORT</span>
                 <span className="text-[9px] uppercase border border-transparent text-on-tertiary-container bg-tertiary-container px-2 py-0.5 rounded font-bold">
-                  open-memory/v1
+                  heirloom-sample/v1
                 </span>
               </div>
               <p className="text-on-surface-variant text-[11px] font-sans leading-normal mb-3">
-                Heirloom decoupled memory can be exported as a standard portable JSON. Swapping AI vendors (e.g. from OpenAI to Anthropic) never means losing institutional context.
+                This sample JSON shows the proposed portable record shape. Importing it into another assistant or vendor has not been built or tested.
               </p>
               <div className="flex-1 bg-surface-container-highest border border-outline-variant rounded-lg p-2.5 overflow-auto max-h-[200px] text-[10px] text-on-surface-variant font-mono scrollbar-thin">
                 <pre>{getExportJSON()}</pre>
               </div>
-              <button 
-                onClick={() => {
-                  navigator.clipboard.writeText(getExportJSON());
-                  alert("Open Memory Schema JSON copied to clipboard!");
-                }}
+              <div className="mt-3 flex flex-wrap gap-2">
+              <button type="button" onClick={downloadExport}
+                className="flex min-h-[44px] items-center justify-center gap-2 border border-outline bg-primary px-3 py-2 text-on-primary font-bold transition-colors">
+                <Download className="h-4 w-4" /> Download sample JSON
+              </button>
+              <button type="button" onClick={copyExport}
                 className="mt-3 flex items-center justify-center gap-2 p-2.5 border border-outline bg-surface-container-low text-on-surface hover:bg-on-surface/8 rounded-lg font-bold transition-colors"
               >
-                <Download className="h-4 w-4" /> Copy Export Schema
+                <FileCode className="h-4 w-4" /> Copy sample JSON
               </button>
+              </div>
+              <p className="mt-2 min-h-5 text-xs text-muted-foreground" role="status" aria-live="polite">{exportStatus}</p>
             </div>
           </div>
         )}

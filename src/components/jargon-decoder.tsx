@@ -8,11 +8,11 @@ interface Term {
 
 const TERMS: Term[] = [
   { word: "Institutional Memory", definition: "Decisions, their reasons, client quirks, lessons from wins and losses — the collective knowledge that makes a firm a firm." },
-  { word: "Context Lock-in", definition: "The new vendor trap: your AI tools have learned your firm's domain, and none of it can leave with you if you decide to change providers." },
-  { word: "Role-scoped Recall", definition: "The intern's AI and the partner's AI get different answers to the exact same question, automatically matching credentials." },
-  { word: "Provenance", definition: "Every answer names its source (e.g. 'partner sync, 12 Mar'). An answer without a verifiable source is considered a rumor." },
-  { word: "Supersession", definition: "Corrections replace old memories in future query answers, but history stays in the immutable record for future audits." },
-  { word: "Open Export Format", definition: "The memory leaves in a documented file format (JSON), so switching LLM vendors is a settings change — not corporate amnesia." },
+  { word: "Context lock-in", definition: "An organization's context can become difficult to move when it is tied to one provider's tools or storage." },
+  { word: "Role-scoped recall", definition: "A proposed system could use a person's role to filter which sample records are available to a query." },
+  { word: "Provenance", definition: "A record can include a source, owner, and date so readers can inspect where a statement came from." },
+  { word: "Supersession", definition: "A correction can be stored as a newer record while keeping the earlier sample available for reference." },
+  { word: "Open export format", definition: "A documented JSON export can make it easier to move records, if another system can import the same fields." },
 ];
 
 export function JargonDecoder() {
@@ -21,6 +21,8 @@ export function JargonDecoder() {
   return (
     <div className="rounded-xl border border-outline-variant bg-surface-container p-4">
       <button
+        type="button"
+        aria-expanded={isOpen}
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full items-center justify-between font-sans text-sm font-bold text-foreground focus:outline-none"
       >

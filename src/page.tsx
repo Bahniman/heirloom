@@ -1,6 +1,7 @@
 import { RoleQuerySimulator } from "@/components/role-query-simulator";
 import { JargonDecoder } from "@/components/jargon-decoder";
 import { SuiteHeader } from "@/components/suite-header";
+import { MemoryRecordStack } from "@/components/memory-record-stack";
 
 export default function LandingPage() {
   return (
@@ -18,32 +19,32 @@ export default function LandingPage() {
       <main id="main">
 
         {/* ------------------------------ opening ----------------------------- */}
-        <section className="shell section hero-grid">
-          <div>
-            <h1 className="display">The firm&rsquo;s memory,<br /><em>owned by the firm.</em></h1>
-            <p className="lede">
+        <section className="shell section hero-grid heirloom-hero">
+          <div className="heirloom-hero-copy">
+            <h1 className="heirloom-display" aria-label="A firm's memory. Records it can carry.">
+              <span className="heirloom-overprint" data-print="Firm memory." aria-hidden="true">
+                <span>Firm memory.</span><span>Firm memory.</span>
+              </span>
+              <em>Records it can carry.</em>
+            </h1>
+            <p className="lede heirloom-lede">
               Consulting and legal firms often rely on knowledge that is hard to capture in a
               file: why a team priced work a certain way, the context behind a client preference,
               what a lost pitch taught them. When that context lives in a vendor&apos;s assistant,
               the firm may not control how it travels. Heirloom explores a firm-owned record
               format; this prototype demonstrates role-scoped retrieval and portable records.
             </p>
-            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "2.5rem" }}>
-              <a href="#demo" className="inline-flex items-center gap-2 rounded bg-primary px-6 py-3 text-label-lg font-medium text-on-primary">
+            <div className="heirloom-actions">
+              <a href="#demo" className="heirloom-action heirloom-action-primary">
                 Try the sandbox
               </a>
-              <a href="#problem" className="inline-flex items-center gap-2 rounded border border-outline px-6 py-3 text-label-lg font-medium">
+              <a href="#problem" className="heirloom-action heirloom-action-secondary">
                 Read the argument
               </a>
             </div>
+            <p className="heirloom-honesty">Working prototype · MIT licensed · sample records are fictional</p>
           </div>
-
-          <dl className="meta">
-            <div><dt>Layer</dt><dd>Memory</dd></div>
-            <div><dt>Status</dt><dd>Working prototype, MIT licensed</dd></div>
-            <div><dt>Standard</dt><dd>MCP connector planned; not included in this prototype</dd></div>
-            <div><dt>Part of</dt><dd>Four protocols for the agent economy</dd></div>
-          </dl>
+          <MemoryRecordStack />
         </section>
 
         {/* ----------------------------- statement ---------------------------- */}

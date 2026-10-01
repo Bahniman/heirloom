@@ -20,6 +20,8 @@ Heirloom uses the shared Riso Poster visual system and responsive project header
 
 Implemented accessibility details include a skip link, semantic headings and landmarks, labeled controls, keyboard-operable choices, and a horizontally scrollable comparison region with a label and keyboard focus. The page also uses reduced-motion styling. These features are not a formal WCAG conformance claim.
 
+Record metadata and source links use readable ink variants in both themes. The jargon disclosure has a labeled panel relationship and supports keyboard opening and closing. Export feedback reports that the download was requested; the browser handles the final save.
+
 ## Run the website locally
 
 Requires Node.js 22.12+ and npm.

@@ -322,7 +322,7 @@ export function RoleQuerySimulator() {
     link.download = "heirloom-sample-open-memory.json";
     link.click();
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-    setExportStatus("Sample JSON downloaded.");
+    setExportStatus("Download requested. Check your browser’s downloads.");
   };
 
   return (
@@ -457,11 +457,11 @@ export function RoleQuerySimulator() {
 
                     <div className="grid grid-cols-2 gap-2 text-[10px] border-b border-border/40 pb-3">
                       <div>
-                        <span className="text-muted-foreground/60 block">CREATOR:</span>
+                        <span className="text-muted-foreground block">CREATOR:</span>
                         <span className="text-foreground">{selectedFile.creator}</span>
                       </div>
                       <div>
-                        <span className="text-muted-foreground/60 block">DATE LOGGED:</span>
+                        <span className="text-muted-foreground block">DATE LOGGED:</span>
                         <span className="text-foreground">{selectedFile.date}</span>
                       </div>
                     </div>

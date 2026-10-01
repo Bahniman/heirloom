@@ -23,8 +23,9 @@ export function JargonDecoder() {
       <button
         type="button"
         aria-expanded={isOpen}
+        aria-controls="heirloom-jargon-panel"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between font-sans text-sm font-bold text-foreground focus:outline-none"
+        className="flex w-full items-center justify-between font-sans text-sm font-bold text-foreground"
       >
         <span className="flex items-center gap-2">
           <BookOpen className="h-4 w-4 text-primary" />
@@ -33,7 +34,7 @@ export function JargonDecoder() {
         {isOpen ? <ChevronUp className="h-4 w-4 text-on-surface-variant" /> : <ChevronDown className="h-4 w-4 text-on-surface-variant" />}
       </button>
 
-      {isOpen && (
+      <div id="heirloom-jargon-panel" hidden={!isOpen}>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full border-collapse text-left text-xs md:text-sm">
             <thead>
@@ -52,7 +53,7 @@ export function JargonDecoder() {
             </tbody>
           </table>
         </div>
-      )}
+      </div>
     </div>
   );
 }

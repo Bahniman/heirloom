@@ -7,12 +7,12 @@ interface Term {
 }
 
 const TERMS: Term[] = [
-  { word: "Institutional Memory", definition: "Decisions, their reasons, client quirks, lessons from wins and losses — the collective knowledge that makes a firm a firm." },
-  { word: "Context lock-in", definition: "An organization's context can become difficult to move when it is tied to one provider's tools or storage." },
-  { word: "Role-scoped recall", definition: "A proposed system could use a person's role to filter which sample records are available to a query." },
-  { word: "Provenance", definition: "A record can include a source, owner, and date so readers can inspect where a statement came from." },
-  { word: "Supersession", definition: "A correction can be stored as a newer record while keeping the earlier sample available for reference." },
-  { word: "Open export format", definition: "A documented JSON export can make it easier to move records, if another system can import the same fields." },
+  { word: "Institutional Memory", definition: "Decisions, their reasons, client quirks, lessons from wins and losses: the collective knowledge that makes a firm a firm." },
+  { word: "Context lock-in", definition: "When a firm's knowledge lives inside one vendor's assistant, leaving that vendor means leaving the knowledge behind." },
+  { word: "Role-scoped recall", definition: "The assistant only searches what your role is allowed to see. An analyst never gets the partner-only pricing, even by accident." },
+  { word: "Provenance", definition: "Every record carries who wrote it, where and when, so an answer can always point back to the meeting it came from." },
+  { word: "Supersession", definition: "A correction is stored as a new record that replaces the old one, and the old one stays on file so the history is visible." },
+  { word: "Open export format", definition: "One click gives the firm all of its records as a documented JSON file it can take anywhere." },
 ];
 
 export function JargonDecoder() {
@@ -29,7 +29,7 @@ export function JargonDecoder() {
       >
         <span className="flex items-center gap-2">
           <BookOpen className="h-4 w-4 text-primary" />
-          Jargon Decoder
+          The words, in plain English
         </span>
         {isOpen ? <ChevronUp className="h-4 w-4 text-on-surface-variant" /> : <ChevronDown className="h-4 w-4 text-on-surface-variant" />}
       </button>

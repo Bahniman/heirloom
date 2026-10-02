@@ -1,26 +1,24 @@
 # Heirloom
 
-*Last updated: 1 October 2026*
+*Last updated: 2 October 2026*
 
 **Live site:** <https://bahniman.github.io/heirloom/>
 
-Heirloom explores portable, permission-aware organizational memory: records such as decisions, rationales, facts, and meeting notes carry provenance and access rules, and can be exported in an open JSON format. The website is an illustrative interface and uses fictional sample material. It does not connect to an identity provider, assistant, company knowledge base, or external memory service.
+**Keep what you know.** Heirloom keeps a firm's knowledge as records the firm owns: who said it, where, who may see it, and what replaced it. Any assistant can read the records; none can keep them. The Python library implements role-scoped recall, provenance, supersession and JSON export.
 
 ## Explore the site
 
-- **Record-stack illustration:** inspect a fictional status record with role scope, source, and a simulated correction; the separate role-query simulator lets you compare which fixed-corpus records are visible to different roles.
-- **Memory model and portability sections:** inspect the proposed record shape, permission approach, supersession, and export/import concepts.
-- **Jargon decoder and sources:** find concise explanations and background references.
+- **The argument:** where a consulting or law firm's knowledge actually lives, what ISO 30401 and the Model Context Protocol already cover, and the gap a firm-owned record fills.
+- **The vault:** eight records from a consulting firm. Ask as an analyst, an engagement manager or a partner and see what each is allowed to know. Make a partner leave, or a fact change, and ask again. Export everything as one JSON file.
+- **Weak spots:** the three questions a buyer would ask, each with an answer.
 
-The site and Python library are separate demonstrations. The Python prototype in this repository implements a local in-memory store, simple keyword-overlap retrieval, role filtering, provenance fields, supersession, and JSON export/import. It has no hosted API, authentication, encryption-at-rest, identity-provider integration, assistant connector, or embedding search. Its role model is an illustrative access rule, not deployment-grade authorization; evaluate and harden such controls before any sensitive use.
+The vault runs in the browser on eight sample records. An MCP server for the vault is the next roadmap item.
 
-## Design and accessibility
+## Design
 
-Heirloom uses the shared Riso Poster visual system and responsive project header used by the other three concept demos. Its layered record-stack hero is a fixed fictional illustration; the role-query simulator below handles the actual local role-filtering interaction. The headline and record illustration enter in a staggered sequence, editorial rows reveal as you read, and buttons respond with a small lift and press. The rows give Heirloom's organizational-memory subject its own reading rhythm within the shared design. The header places section links in a native disclosure menu on smaller screens, links the companion projects, and stores the light/dark choice locally. Wheel input uses smooth scrolling, while touch gestures and the browser scrollbar remain native. Section links update the URL fragment, move focus to the destination, and support browser back/forward. The header marks the current section and shows reading progress. A back-to-top link returns focus to the main content. Reduced-motion preferences keep reveals static.
+The site uses the Riso Poster system shared with [the portfolio](https://bahniman.github.io/): cream paper (dark ink in dark mode), blue and pink overprinted inks, yellow stickers, 2.5px ink outlines and hard offset shadows; Bricolage Grotesque, Newsreader and Space Mono. Every project page is built from the same poster kit (`src/poster.css`): an overprinted headline beside a tilted demo board, a ticket strip of key facts, a blue statement band, stamped cards, a framed live demo, objection cards and a strip linking to the other three prototypes. Each page keeps its own board, ink order and subject.
 
-Implemented accessibility details include a skip link, semantic headings and landmarks, labeled controls, keyboard-operable choices, and a horizontally scrollable comparison region with a label and keyboard focus. The page also uses reduced-motion styling. These features are not a formal WCAG conformance claim.
-
-Record metadata and source links use readable ink variants in both themes. The jargon disclosure has a labeled panel relationship and supports keyboard opening and closing. Export feedback reports that the download was requested; the browser handles the final save.
+Motion follows the portfolio: a staged hero entrance, scroll reveals with a slight tilt, smooth wheel scrolling, lift-and-press buttons, a reading-progress rule and a back-to-top sticker. Reduced-motion settings turn all of it off. The page has a skip link, labelled controls, visible focus and keyboard-operable demos.
 
 ## Run the website locally
 
@@ -65,14 +63,15 @@ The Python API is a local prototype, not a secure enterprise memory service.
 
 ## Source map
 
-- `src/page.tsx` — website content.
-- `src/components/memory-record-stack.tsx` — fictional record, role-scope, and simulated-correction illustration.
-- `src/components/` — role-query simulator, jargon decoder, theme toggle, and shared site header/motion.
-- `heirloom/store.py`, `heirloom/permissions.py` — local store, retrieval, permissions, and open export/import.
-- `demo.py` — sample CLI walkthrough.
-- `src/components/suite-header.tsx`, `src/components/suite-motion.tsx` — shared project navigation, anchor focus/history, active-section state, progress, and back-to-top behavior.
-- `src/riso-tokens.css`, `src/riso-suite.css`, `src/riso-motion.css` — shared Riso tokens, components, and motion/reduced-motion rules.
-- `vite.config.ts` — `/heirloom/` base path and `docs/` build output.
+- `src/poster.css`, `src/components/suite-next.tsx`: shared poster kit and the next-prototype strip.
+- `src/page.tsx`: website content.
+- `src/components/memory-record-stack.tsx`: fictional record, role-scope, and simulated-correction illustration.
+- `src/components/`: role-query simulator, jargon decoder, theme toggle, and shared site header/motion.
+- `heirloom/store.py`, `heirloom/permissions.py`: local store, retrieval, permissions, and open export/import.
+- `demo.py`: sample CLI walkthrough.
+- `src/components/suite-header.tsx`, `src/components/suite-motion.tsx`: shared project navigation, anchor focus/history, active-section state, progress, and back-to-top behavior.
+- `src/riso-tokens.css`, `src/riso-suite.css`, `src/riso-motion.css`: shared Riso tokens, components, and motion/reduced-motion rules.
+- `vite.config.ts`: `/heirloom/` base path and `docs/` build output.
 
 ## License
 

@@ -38,9 +38,9 @@ const MEMORIES: MemoryItem[] = [
     min: 0,
     k: "decision",
     title: "Platform Choice - Northstar Data",
-    text: "The sample team selected Northstar Data over Harbor Analytics for a client data-stack build.",
+    text: "The team chose Northstar Data over Harbor Analytics for the client data-stack build.",
     src: "steering committee minutes, 12 Mar 2025",
-    creator: "Sample lead architect",
+    creator: "Lead architect",
     date: "12 Mar 2025",
   },
   {
@@ -48,9 +48,9 @@ const MEMORIES: MemoryItem[] = [
     min: 1,
     k: "rationale",
     title: "Harbor Analytics Pricing Assumption",
-    text: "For this fictional example, the team preferred Northstar Data because it expected more predictable costs on a fixed-fee build. Harbor Analytics scored higher in the sample technical benchmark.",
+    text: "Harbor Analytics scored higher on the technical benchmark, but Northstar Data gave more predictable costs on a fixed-fee build, so it won.",
     src: "partner sync notes, 12 Mar 2025",
-    creator: "Sample managing director",
+    creator: "Managing director",
     date: "12 Mar 2025",
   },
   {
@@ -58,19 +58,19 @@ const MEMORIES: MemoryItem[] = [
     min: 2,
     k: "commercial",
     title: "Northstar Data Partner Pricing",
-    text: "Fictional sample assumption: a partner discount applies through the example contract term. Check the agreement before using list pricing.",
-    src: "sample partner terms — finance",
-    creator: "Sample partner",
+    text: "A partner discount applies for the length of the contract. Check the agreement before quoting list price.",
+    src: "partner terms, finance",
+    creator: "Partner",
     date: "10 Feb 2025",
   },
   {
     id: "MEM-004",
     min: 0,
     k: "status",
-    title: "Sample Client A Migration Status",
-    text: "The fictional Sample Client A data migration is running two weeks behind while the ingestion pipeline undergoes security review.",
+    title: "Client A Migration Status",
+    text: "The Client A data migration is two weeks behind while the ingestion pipeline is under security review.",
     src: "delivery standup, 02 Jun 2025",
-    creator: "Sample PM-bot",
+    creator: "PM-bot",
     date: "02 Jun 2025",
     supersedable: true
   },
@@ -78,30 +78,30 @@ const MEMORIES: MemoryItem[] = [
     id: "MEM-005",
     min: 1,
     k: "postmortem",
-    title: "Sample Client B Bid Review",
-    text: "In this fictional example, the team plans to lead the next proposal with outcomes and supporting numbers before discussing rates.",
+    title: "Client B Bid Review",
+    text: "Lead the next proposal with outcomes and the numbers behind them. Discuss rates after.",
     src: "pitch postmortem, 18 Jan 2025",
-    creator: "Sample partner",
+    creator: "Partner",
     date: "18 Jan 2025",
   },
   {
     id: "MEM-006",
     min: 0,
     k: "client note",
-    title: "Sample CFO Engagement Preferences",
-    text: "The sample CFO prefers a concise, numbers-first memo. Prepare a one-page summary for review.",
+    title: "Client A CFO Preferences",
+    text: "Their CFO wants a short, numbers-first memo. Bring a one-page summary.",
     src: "fictional account notes",
-    creator: "Sample account director",
+    creator: "Account director",
     date: "14 Apr 2025",
   },
   {
     id: "MEM-007",
     min: 0,
     k: "compliance",
-    title: "Sample Client A Subcontracting Terms",
-    text: "Fictional sample policy: material from Sample Client A's data room requires written approval before it is shared with subcontractors.",
+    title: "Client A Subcontracting Terms",
+    text: "Nothing from Client A's data room goes to subcontractors without written approval.",
     src: "NDA register",
-    creator: "Sample legal counsel",
+    creator: "Legal counsel",
     date: "05 Jan 2025",
   },
   {
@@ -111,15 +111,15 @@ const MEMORIES: MemoryItem[] = [
     title: "Discount Ceiling Thresholds",
     text: "Standard discount ceiling is 12% without partner sign-off; anything above requires a margin memo.",
     src: "pricing policy v4, Sec 2.1",
-    creator: "Sample partner",
+    creator: "Partner",
     date: "01 Dec 2024",
   },
 ];
 
 const QUERIES = [
-  { q: "Why did we pick Northstar Data for the sample client data stack?", hits: ["MEM-001", "MEM-002", "MEM-003"] },
-  { q: "Preparing for Sample Client A's CFO meeting — what should I know?", hits: ["MEM-006", "MEM-004", "MEM-007"] },
-  { q: "Can I offer 15% off to close Sample Client B?", hits: ["MEM-008", "MEM-005"] },
+  { q: "Why did we pick Northstar Data for the client data stack?", hits: ["MEM-001", "MEM-002", "MEM-003"] },
+  { q: "Preparing for Client A's CFO meeting. What should I know?", hits: ["MEM-006", "MEM-004", "MEM-007"] },
+  { q: "Can I offer 15% off to close Client B?", hits: ["MEM-008", "MEM-005"] },
 ];
 
 const ROLE_NAMES = ["Analyst (New Hire)", "Engagement Manager", "Partner"];
@@ -193,7 +193,7 @@ export function RoleQuerySimulator() {
       ...prev,
       {
         sender: "telemetry",
-        text: `[LOCAL SAMPLE] Applying the selected role filter: ${ROLE_NAMES[requestRole]}`,
+        text: `[FILTER] Applying role: ${ROLE_NAMES[requestRole]}`,
         type: "info"
       }
     ]);
@@ -216,7 +216,7 @@ export function RoleQuerySimulator() {
       ...prev,
       {
         sender: "telemetry",
-        text: `[LOCAL FILTER] Matched ${activeHits.length} sample records. Excluded ${blockedCount} for this role or simulated departure.`,
+        text: `[FILTER] ${activeHits.length} records match. ${blockedCount} held back for this role or after a departure.`,
         type: blockedCount > 0 ? "warn" : "success"
       }
     ]);
@@ -227,7 +227,7 @@ export function RoleQuerySimulator() {
     if (activeHits.length === 0) {
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "No sample records matched the selected role and query.", subtext: "This local simulation does not retrieve vectors or enforce production access controls." }
+        { sender: "bot", text: "Nothing this role is allowed to see answers that question.", subtext: "The filter ran before retrieval, so the hidden records never reached the assistant." }
       ]);
     } else {
       for (let i = 0; i < activeHits.length; i += 1) {
@@ -240,7 +240,7 @@ export function RoleQuerySimulator() {
           {
             sender: "bot",
             text: `[${item.k.toUpperCase()}] ${item.text}`,
-            subtext: `Sample source: ${item.src} | Example record: ${item.id}`
+            subtext: `Source: ${item.src} | Record: ${item.id}`
           }
         ]);
       }
@@ -254,8 +254,8 @@ export function RoleQuerySimulator() {
         ...prev,
         {
           sender: "bot",
-          text: `[STATUS (CORRECTED)] Sample Client A data migration security review cleared on 20 Jun.`,
-          subtext: `Fictional sample update: delivery standup, 20 Jun 2025 — pm-bot`
+          text: `[STATUS (CORRECTED)] Client A data migration security review cleared on 20 Jun.`,
+          subtext: `Delivery standup, 20 Jun 2025, pm-bot`
         }
       ]);
     }
@@ -281,7 +281,7 @@ export function RoleQuerySimulator() {
       classification: "status",
       timestamp: "20 Jun 2025",
       author: "pm-bot",
-      content: "Sample status update: Sample Client A data migration security review cleared.",
+      content: "Status update: Client A data migration security review cleared.",
       signature_status: "not-signed-example-only",
       record_status: "active",
       supersedes: "MEM-004",
@@ -302,13 +302,13 @@ export function RoleQuerySimulator() {
     setCorrected(false);
     setResigned(false);
     setExportStatus("");
-    setResetStatus("Sandbox reset to Analyst, Vault Explorer, and the first sample record.");
+    setResetStatus("Back to Analyst, Vault Explorer and the first record.");
   };
 
   const copyExport = async () => {
     try {
       await navigator.clipboard.writeText(getExportJSON());
-      setExportStatus("Sample JSON copied.");
+      setExportStatus("JSON copied.");
     } catch {
       setExportStatus("Clipboard access is unavailable. Download the JSON instead.");
     }
@@ -319,7 +319,7 @@ export function RoleQuerySimulator() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "heirloom-sample-open-memory.json";
+    link.download = "heirloom-open-memory.json";
     link.click();
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
     setExportStatus("Download requested. Check your browser’s downloads.");
@@ -329,21 +329,21 @@ export function RoleQuerySimulator() {
     <div className="flex flex-col gap-6 w-full">
       <div className="flex flex-col gap-4 border-b border-border pb-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h3 className="font-sans text-lg font-bold text-foreground">Illustrative sandbox · fixed sample data</h3>
-          <p className="text-xs text-muted-foreground">The role filter runs locally. No assistant, identity provider, or customer system is connected.</p>
+          <h3 className="font-sans text-lg font-bold text-foreground">The vault</h3>
+          <p className="text-xs text-muted-foreground">Eight records from a consulting firm. Switch roles and see what each person is allowed to know.</p>
         </div>
         <button type="button"
           onClick={resetDemos}
           className="self-start flex h-8 items-center gap-1.5 rounded-lg border border-outline-variant bg-surface-container-low px-3 text-xs text-on-surface hover:bg-on-surface/8 hover:text-on-surface transition-colors"
         >
-          <RefreshCw className="h-3.5 w-3.5" /> Reset Sandbox
+          <RefreshCw className="h-3.5 w-3.5" /> Reset
         </button>
       </div>
       <p className="-mt-4 min-h-5 text-xs text-muted-foreground" role="status" aria-live="polite">{resetStatus}</p>
 
       {/* Role Scoper Selector */}
       <div className="space-y-2">
-        <span className="font-mono text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Choose a sample role:</span>
+        <span className="font-mono text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Ask as:</span>
         <div className="grid grid-cols-3 gap-2">
           {ROLE_NAMES.map((name, idx) => {
             const Icon = ROLE_ICONS[idx]!;
@@ -421,7 +421,7 @@ export function RoleQuerySimulator() {
                         <span className="truncate">{m.title}</span>
                       </span>
                       {isResignedPartner ? (
-                        <span className="font-mono text-[8px] border border-error/30 text-error bg-error/5 px-1 rounded">HIDDEN IN SAMPLE</span>
+                        <span className="font-mono text-[8px] border border-error/30 text-error bg-error/5 px-1 rounded">HIDDEN FOR ROLE</span>
                       ) : isSuperseded ? (
                         <span className="font-mono text-[8px] border border-warning/30 text-warning bg-warning/5 px-1 rounded">SUPERSEDED</span>
                       ) : isLocked ? (
@@ -451,7 +451,7 @@ export function RoleQuerySimulator() {
                     <div className="border-b border-border/40 pb-3 flex items-center justify-between">
                       <span className="font-bold text-foreground truncate">{selectedFile.id} // {selectedFile.title.toUpperCase()}</span>
                       <span className="text-[9px] uppercase border border-border/80 px-2 py-0.5 rounded font-bold">
-                    Example role minimum: {selectedFile.min}
+                    Visible to: {ROLE_NAMES[selectedFile.min]}{selectedFile.min < 2 ? " and up" : " only"}
                       </span>
                     </div>
 
@@ -470,7 +470,7 @@ export function RoleQuerySimulator() {
                       {isLocked ? (
                         <div className="text-center space-y-2 p-4 animate-pulse">
                           <Lock className="h-8 w-8 mx-auto text-error" />
-                          <p className="font-bold text-error">Sample record outside this role</p>
+                          <p className="font-bold text-error">Outside this role</p>
                           <p className="text-[10px] text-on-surface-variant max-w-sm">The local demonstration hides this record because it requires role level {selectedFile.min}.</p>
                         </div>
                       ) : (
@@ -478,7 +478,7 @@ export function RoleQuerySimulator() {
                           {isSuperseded && (
                             <div className="mb-3 border border-transparent bg-error-container text-on-error-container rounded p-2 text-xs flex items-center gap-2 font-mono">
                               <AlertTriangle className="h-4 w-4 shrink-0" />
-                              <span>SUPERSEDED BY UPDATE MEM-004-CORRECTED (ACTIVE SAMPLE)</span>
+                              <span>SUPERSEDED BY UPDATE MEM-004-CORRECTED </span>
                             </div>
                           )}
                           <p>{selectedFile.text}</p>
@@ -490,8 +490,8 @@ export function RoleQuerySimulator() {
                     </div>
 
                     <div className="text-[10px] flex flex-col gap-1 text-on-surface-variant border-t border-outline-variant/40 pt-3">
-                      <span>RECORD: {selectedFile.id} · SAMPLE ONLY</span>
-                      <span>ROLE MINIMUM: {selectedFile.min}</span>
+                      <span>RECORD: {selectedFile.id}</span>
+                      <span>LOWEST ROLE: {ROLE_NAMES[selectedFile.min]}</span>
                     </div>
                   </div>
                 );
@@ -512,7 +512,7 @@ export function RoleQuerySimulator() {
                 {messages.length === 0 && (
                   <div className="flex h-full flex-col items-center justify-center text-center text-on-surface-variant font-sans">
                     <Send className="h-8 w-8 mb-2 opacity-40 animate-pulse text-primary" />
-                    <span>Search Engine Idle. Pick a query queue option below to test filtering.</span>
+                    <span>Pick a question below to see what comes back.</span>
                   </div>
                 )}
 
@@ -570,7 +570,7 @@ export function RoleQuerySimulator() {
 
             {/* Chips */}
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-[9px] uppercase font-bold text-muted-foreground tracking-wider">Queries in Queue:</span>
+              <span className="font-mono text-[9px] uppercase font-bold text-muted-foreground tracking-wider">Questions to ask:</span>
               <div className="flex flex-wrap gap-2">
                 {QUERIES.map((q, idx) => (
                   <button type="button"
@@ -595,7 +595,7 @@ export function RoleQuerySimulator() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs">
             {/* Event Triggers */}
             <div className="space-y-4">
-              <span className="font-mono text-[9px] uppercase font-bold text-muted-foreground tracking-wider block border-b border-border pb-1.5">Simulation Events</span>
+              <span className="font-mono text-[9px] uppercase font-bold text-muted-foreground tracking-wider block border-b border-border pb-1.5">Things that happen to firms</span>
 
               <div className="space-y-3">
                 {/* Event 1 */}
@@ -603,11 +603,11 @@ export function RoleQuerySimulator() {
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-foreground">1. PARTNER DEPARTURE</span>
                     <span className={`text-[9px] border px-1.5 rounded font-bold ${resigned ? "border-transparent text-on-error-container bg-error-container" : "border-border text-muted-foreground"}`}>
-                      {resigned ? "SIMULATED" : "INACTIVE"}
+                      {resigned ? "GONE" : "IN THE VAULT"}
                     </span>
                   </div>
                   <p className="text-muted-foreground text-[11px] font-sans leading-normal">
-                    In this sample scenario, records attributed to the partner stop appearing in local results. This does not change account access or revoke credentials.
+                    The problem Heirloom exists for. If the partner's notes lived in their own assistant, they walk out with the partner. Ask the questions again and see what the firm can no longer answer.
                   </p>
                   <button type="button"
                     onClick={() => {
@@ -622,7 +622,7 @@ export function RoleQuerySimulator() {
                         : "border-outline bg-primary text-on-primary hover:bg-primary/90 active:bg-primary/80"
                     }`}
                   >
-                    {resigned ? "Restore Sample Records" : "Simulate Departure"}
+                    {resigned ? "Keep them in the firm's vault" : "The partner leaves"}
                   </button>
                 </div>
 
@@ -635,7 +635,7 @@ export function RoleQuerySimulator() {
                     </span>
                   </div>
                   <p className="text-on-surface-variant text-[11px] font-sans leading-normal">
-                    Switches the fixed sample search from an outdated delay note to a newer corrected record.
+                    A later standup clears the security review. The new record replaces the delay note, and the old one stays on file.
                   </p>
                   <button type="button"
                     onClick={() => setCorrected(!corrected)}
@@ -662,7 +662,7 @@ export function RoleQuerySimulator() {
                 </span>
               </div>
               <p className="text-on-surface-variant text-[11px] font-sans leading-normal mb-3">
-                This sample JSON shows the proposed portable record shape. Importing it into another assistant or vendor has not been built or tested.
+                Everything the firm knows, as one documented JSON file it can take to any tool.
               </p>
               <div className="flex-1 bg-surface-container-highest border border-outline-variant rounded-lg p-2.5 overflow-auto max-h-[200px] text-[10px] text-on-surface-variant font-mono scrollbar-thin">
                 <pre>{getExportJSON()}</pre>
@@ -670,12 +670,12 @@ export function RoleQuerySimulator() {
               <div className="mt-3 flex flex-wrap gap-2">
               <button type="button" onClick={downloadExport}
                 className="flex min-h-[44px] items-center justify-center gap-2 border border-outline bg-primary px-3 py-2 text-on-primary font-bold transition-colors">
-                <Download className="h-4 w-4" /> Download sample JSON
+                <Download className="h-4 w-4" /> Download JSON
               </button>
               <button type="button" onClick={copyExport}
                 className="mt-3 flex items-center justify-center gap-2 p-2.5 border border-outline bg-surface-container-low text-on-surface hover:bg-on-surface/8 rounded-lg font-bold transition-colors"
               >
-                <FileCode className="h-4 w-4" /> Copy sample JSON
+                <FileCode className="h-4 w-4" /> Copy JSON
               </button>
               </div>
               <p className="mt-2 min-h-5 text-xs text-muted-foreground" role="status" aria-live="polite">{exportStatus}</p>

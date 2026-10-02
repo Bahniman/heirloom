@@ -236,3 +236,16 @@ main > .section.band { padding-block: clamp(76px, 9.5vw, 124px); }
   #sources .src > li { grid-template-columns: 30px minmax(0, 1fr); gap: 8px; padding: 15px 4px; font-size: 14px !important; }
   .statement .line { font-size: clamp(28px, 8vw, 40px); }
 }
+
+/* Signature: the three rules as library index cards (red head rule, blue ruled lines, punched hole). */
+.pk-cards--index li { padding:22px 26px 46px; background:var(--card) repeating-linear-gradient(transparent 0 27px,var(--emer-bg) 27px 29px) 0 74px / 100% calc(100% - 74px) no-repeat; color:var(--ink); }
+.pk-cards--index li::before { content:""; position:absolute; left:0; right:0; top:62px; border-top:2.5px solid var(--pink); }
+.pk-cards--index li::after { content:""; position:absolute; left:50%; bottom:14px; translate:-50% 0; width:18px; height:18px; border:var(--bw) solid var(--ink); border-radius:50%; background:var(--paper); }
+.pk-cards--index li:nth-child(3) { background:var(--card) repeating-linear-gradient(transparent 0 27px,var(--emer-bg) 27px 29px) 0 74px / 100% calc(100% - 74px) no-repeat; color:var(--ink); }
+.pk-cards--index li:nth-child(3) :is(h3,p,.pk-kick) { color:inherit; }
+.pk-cards--index li:nth-child(3) p:not(.pk-kick) { color:var(--body); }
+.pk-cards--index li:nth-child(3) .pk-kick .n { background:var(--ink); color:var(--paper); }
+.pk-cards--index h3 { margin-top:24px; }
+.pk-cards--index .eg { border-top:0; padding-top:4px; color:var(--tan); }
+.pk-cards--index li:nth-child(3) .eg { color:var(--tan); }
+.pk-cards--index li:nth-child(2) { rotate:1.6deg; }

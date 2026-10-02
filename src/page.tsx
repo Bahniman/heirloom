@@ -9,9 +9,9 @@ export default function LandingPage() {
     <div className="heirloom-page pk" style={{ ["--a" as string]: "var(--pink-display)", ["--b" as string]: "var(--blue)" }}>
 
       <SuiteHeader name="Heirloom" sections={[
+        { label: "Try the vault", href: "#demo" },
         { label: "The gap", href: "#problem" },
         { label: "How it works", href: "#how" },
-        { label: "Try the vault", href: "#demo" },
         { label: "Weak spots", href: "#limits" },
         { label: "Sources", href: "#sources" },
       ]} />
@@ -69,6 +69,19 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* -------------------------------- the demo -------------------------------- */}
+        <section className="pk-wrap pk-sec" id="demo">
+          <div className="pk-head">
+            <p className="pk-kick"><span className="dot" /> Try it</p>
+            <h2>Ask as <em>different people.</em></h2>
+            <p className="pk-lede">Pick a role and ask one of the questions. Then make a partner leave, or a fact change, and ask again.</p>
+          </div>
+          <div className="pk-stage">
+            <span className="pk-stage-tag">Live in your browser</span>
+            <RoleQuerySimulator />
+          </div>
+        </section>
+
         {/* ------------------------------- the gap -------------------------------- */}
         <section className="pk-wrap pk-sec" id="problem">
           <div className="pk-head">
@@ -94,7 +107,7 @@ export default function LandingPage() {
             </div>
             <figure className="pk-quote">
               <p>When a partner leaves, <em>the firm shouldn't forget.</em></p>
-              <small>Try it in the vault below: make the partner leave</small>
+              <small>Try it in the vault above: make the partner leave</small>
             </figure>
           </div>
         </section>
@@ -105,7 +118,7 @@ export default function LandingPage() {
             <p className="pk-kick"><span className="dot" /> How it works</p>
             <h2>Three rules <em>for every record.</em></h2>
           </div>
-          <ol className="pk-cards">
+          <ol className="pk-cards pk-cards--index">
             <li>
               <p className="pk-kick"><span className="n">1</span> Guard</p>
               <h3>Filter before retrieval</h3>
@@ -125,19 +138,6 @@ export default function LandingPage() {
               <span className="eg">heirloom-open-memory.json</span>
             </li>
           </ol>
-        </section>
-
-        {/* -------------------------------- the demo -------------------------------- */}
-        <section className="pk-wrap pk-sec" id="demo">
-          <div className="pk-head">
-            <p className="pk-kick"><span className="dot" /> Try it</p>
-            <h2>Ask as <em>different people.</em></h2>
-            <p className="pk-lede">Pick a role and ask one of the questions. Then make a partner leave, or a fact change, and ask again.</p>
-          </div>
-          <div className="pk-stage">
-            <span className="pk-stage-tag">Live in your browser</span>
-            <RoleQuerySimulator />
-          </div>
         </section>
 
         {/* ------------------------------- weak spots ------------------------------- */}

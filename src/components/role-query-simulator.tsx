@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { GlowCard } from "./glow-card";
 import {
   User, Shield, Key, Send, RefreshCw, AlertCircle, CheckCircle,
-  FileText, Folder, Lock, Unlock, Download, FileCode, CheckSquare, XSquare, Search, AlertTriangle
+  FileText, Folder, Lock, Download, FileCode, CheckSquare, XSquare, Search, AlertTriangle
 } from "lucide-react";
 
 interface MemoryItem {
@@ -395,7 +395,7 @@ export function RoleQuerySimulator() {
             {/* File List */}
             <div className="md:col-span-5 border border-outline-variant rounded-lg p-3 bg-surface-container-low space-y-2">
               <span className="font-mono text-[9px] uppercase font-bold text-on-surface-variant tracking-wider block border-b border-outline-variant pb-1.5 mb-2">Vault Index</span>
-              <div className="space-y-1.5 max-h-[320px] overflow-y-auto">
+              <div className="space-y-1.5">
                 {MEMORIES.map((m) => {
                   const isLocked = m.min > role;
                   const isResignedPartner = resigned && m.creator.toLowerCase().includes("partner");
@@ -421,14 +421,12 @@ export function RoleQuerySimulator() {
                         <span className="truncate">{m.title}</span>
                       </span>
                       {isResignedPartner ? (
-                        <span className="font-mono text-[8px] border border-error/30 text-error bg-error/5 px-1 rounded">HIDDEN FOR ROLE</span>
+                        <span className="vault-tag vault-tag-gone">Left with partner</span>
                       ) : isSuperseded ? (
-                        <span className="font-mono text-[8px] border border-warning/30 text-warning bg-warning/5 px-1 rounded">SUPERSEDED</span>
+                        <span className="vault-tag">Replaced</span>
                       ) : isLocked ? (
-                        <Lock className="h-3 w-3 text-on-surface-variant shrink-0" />
-                      ) : (
-                        <Unlock className="h-3 w-3 text-primary shrink-0" />
-                      )}
+                        <span className="vault-tag vault-tag-locked">{m.min === 2 ? "Partner only" : "Manager and up"}</span>
+                      ) : null}
                     </button>
                   );
                 })}
